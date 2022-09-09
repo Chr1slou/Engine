@@ -18,9 +18,27 @@
     <ClInclude Include="includes\Engine.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="includes\SdlInput.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\FileLogger.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ConsoleLogger.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Engine.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SdlInput.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ConsoleLogger.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\FileLogger.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

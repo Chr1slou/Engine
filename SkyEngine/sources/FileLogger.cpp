@@ -2,21 +2,39 @@
 #include "SDL.h"
 #include <Windows.h>
 
-FileLogger::FileLogger()
+FileLogger::FileLogger() : FileLogger("default.txt")
 {
-	OpenLog();
+	
+}
+
+FileLogger::FileLogger(const string filename) 
+{
+	
+}
+
+FileLogger::~FileLogger()
+{
+	
 }
 
 void FileLogger::OpenLog()
 {
-	AllocConsole();
+	m_MyFile.open("fileLogs.txt");
 }
 
 void FileLogger::CloseLog()
 {
-	FreeConsole();
+	if (m_MyFile.is_open())
+	{
+		m_MyFile.close();
+	}
 }
 
-void FileLogger::Write(std::string message)
+void FileLogger::Write(string message)
 {
+	if (m_MyFile.is_open())
+	{
+		m_MyFile << message << endl;
+	}
+	
 }

@@ -19,13 +19,21 @@ void SdlInput::Update()
 
 		case SDL_MOUSEBUTTONDOWN:
 			SDL_MouseButtonEvent _buttonDown = _event.button;
-			SDL_Log("Button down : %d)", _buttonDown.button);
-			SDL_Log("at (%d, %d)", _buttonDown.x, _buttonDown.y);
+			m_MouseStates[_buttonDown.button] = true;
+			/*SDL_Log("Button down : %d)", _buttonDown.button);
+			SDL_Log("at (%d, %d)", _buttonDown.x, _buttonDown.y);*/
 			break;
 		case SDL_MOUSEBUTTONUP:
 			SDL_MouseButtonEvent _buttonUp = _event.button;
-			SDL_Log("Button up : %d", _buttonUp.button);
-			SDL_Log("at (%d, %d)", _buttonUp.x, _buttonUp.y);
+			m_MouseStates[_buttonUp.button] = true;
+			/*SDL_Log("Button up : %d", _buttonUp.button);
+			SDL_Log("at (%d, %d)", _buttonUp.x, _buttonUp.y);*/
+			break;
+
+		case SDL_MOUSEMOTION:
+			SDL_MouseMotionEvent _motion = _event.motion;
+			m_MouseX = _motion.x;
+			m_MouseY = _motion.y;
 			break;
 		case SDL_KEYDOWN:
 			m_KeyStates = SDL_GetKeyboardState(nullptr);
@@ -33,6 +41,7 @@ void SdlInput::Update()
 		case SDL_KEYUP:
 			m_KeyStates = SDL_GetKeyboardState(nullptr);
 			break;
+
 
 
 		}
@@ -61,4 +70,6 @@ bool SdlInput::IsButtonDown(int button)
 
 void SdlInput::GetMousePosition(int* x, int* y)
 {
+	*x = m_MouseX;
+	*y = m_MouseY;
 }

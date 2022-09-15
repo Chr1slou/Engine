@@ -4,6 +4,8 @@
 #include <windows.h>
 #include <SdlInput.h>
 #include <ConsoleLogger.h>
+#include <FileLogger.h>
+
 
 static SDL_Window* _window = nullptr;
 static SDL_Renderer* _renderer = nullptr;
@@ -15,9 +17,15 @@ static bool isRunning = false;
 
 bool sky::Engine::Init(const std::string& title, int w, int h)
 {
+#if _DEBUG
+		m_Logger = new ConsoleLogger();
+		m_Logger->Write("Wooowww");
+#else
+	m_Logger = new FileLogger();
+#endif
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		SDL_Log(SDL_GetError());
+		m_Logger->Write( SDL_GetError());
 		return false;
 	}
 	int _x = SDL_WINDOWPOS_CENTERED;
@@ -28,7 +36,7 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 
 	if(!_window)
 	{
-		SDL_Log(SDL_GetError());
+		m_Logger->Write(SDL_GetError());
 		return false;
 	}
 
@@ -37,13 +45,14 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 	_renderer = SDL_CreateRenderer(_window, -1, flags);
 	if (!_renderer)
 	{
-		SDL_Log(SDL_GetError());
+		m_Logger->Write(SDL_GetError());
 		return false;
 	}
 
 	m_Input = new SdlInput();
-	m_Logger = new ConsoleLogger();
-	m_Logger->Write("Wooowww");
+
+
+	
 	return true;
 }
 
@@ -95,34 +104,7 @@ void sky::Engine::ProcessInput()
 {
 
 	m_Input -> Update();
-	/*SDL_Event _event;
-	while (SDL_PollEvent(&_event))
-	{
-		switch (_event.type)
-		{
-			case SDL_QUIT:
-				Exit();
-
-			case SDL_MOUSEBUTTONDOWN:
-				SDL_MouseButtonEvent _buttonDown = _event.button;
-				SDL_Log("Button down : %d)", _buttonDown.button);
-				SDL_Log("at (%d, %d)", _buttonDown.x, _buttonDown.y);
-				break;
-			case SDL_MOUSEBUTTONUP:
-				SDL_MouseButtonEvent _buttonUp = _event.button;
-				SDL_Log("Button up : %d", _buttonUp.button);
-				SDL_Log("at (%d, %d)", _buttonUp.x, _buttonUp.y);
-				break;
-			case SDL_KEYDOWN :
-				_keys = SDL_GetKeyboardState(nullptr);
-				break;
-			case SDL_KEYUP:
-				_keys = SDL_GetKeyboardState(nullptr);
-				break;
-			
-			
-		}
-	}*/
+	
 }
 
 void sky::Engine::Update(float dt)

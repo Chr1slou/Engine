@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include <Windows.h>
 #include <iostream>
+
 using namespace std;
 
 ConsoleLogger::ConsoleLogger()
@@ -22,7 +23,7 @@ void ConsoleLogger::CloseLog()
 	FreeConsole();
 }
 
-void ConsoleLogger::Write(std::string message)
+void ConsoleLogger::Write(string message)
 {
 	cout << message;
 }

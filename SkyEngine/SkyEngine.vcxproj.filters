@@ -27,6 +27,9 @@
     <ClInclude Include="includes\ConsoleLogger.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="sources\Graphics.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Engine.cpp">
@@ -39,6 +42,9 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="sources\FileLogger.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Graphics.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

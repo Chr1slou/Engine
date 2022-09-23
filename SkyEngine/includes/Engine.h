@@ -1,6 +1,11 @@
 #pragma once
 #include <string>
 
+struct SDL_Texture;
+struct SDL_Renderer;
+struct SDL_Rect;
+struct SDL_Point;
+
 
 namespace sky {
 	class IInput
@@ -28,6 +33,16 @@ namespace sky {
 	
 	};
 
+
+	class IGraphics
+	{
+	public:
+		virtual ~IGraphics() = default;
+		virtual SDL_Texture* LoadTexture(SDL_Renderer* m_Renderer, std::string filename) = 0;
+		virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) = 0;
+
+	};
+
 	class Engine final {
 	public:
 		bool Init(const std::string& title, int w, int h);
@@ -46,6 +61,8 @@ namespace sky {
 
 		IInput* m_Input = nullptr;
 		ILogger* m_Logger = nullptr;
+		IGraphics* m_Graphics = nullptr;
+
 	};
 
 	

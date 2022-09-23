@@ -116,12 +116,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\includes;$(SolutionDir)sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\includes;$(SolutionDir)sdl2\include;$(SolutionDir)sdl2_image\include;C:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdl2\lib\;$(SolutionDir)sdl2_image\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -147,11 +151,13 @@
     <ClInclude Include="includes\Engine.h" />
     <ClInclude Include="includes\FileLogger.h" />
     <ClInclude Include="includes\SdlInput.h" />
+    <ClInclude Include="sources\Graphics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\ConsoleLogger.cpp" />
     <ClCompile Include="sources\Engine.cpp" />
     <ClCompile Include="sources\FileLogger.cpp" />
+    <ClCompile Include="sources\Graphics.cpp" />
     <ClCompile Include="sources\SdlInput.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

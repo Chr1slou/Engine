@@ -5,10 +5,13 @@
 #include <SdlInput.h>
 #include <ConsoleLogger.h>
 #include <FileLogger.h>
+#include "Graphics.h"
+#include <SDL_image.h>
 
 
 static SDL_Window* _window = nullptr;
 static SDL_Renderer* _renderer = nullptr;
+static SDL_Texture* _texture = nullptr;
 static SDL_Rect rect = { 0 };
 static unsigned char const* _keys = nullptr;
 static float _tempX = 0;
@@ -50,7 +53,7 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 	}
 
 	m_Input = new SdlInput();
-
+	m_Graphics = new Graphics();
 
 	
 	return true;
@@ -58,7 +61,10 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 
 void sky::Engine::Start()
 {
-
+	const char* file = "assets/title.png";
+	//Load texture
+	_texture = m_Graphics->LoadTexture(_renderer, "assets/title.png");
+	//_texture = IMG_LoadTexture(_renderer,"assets/title.png");
 	//cube dimensions
 	rect.x = 0;
 	rect.y = 0;
@@ -84,7 +90,7 @@ void sky::Engine::Start()
 		float sleepDuration = _start + MS_PER_FRAME - clock();
 		if (sleepDuration >= 0)
 		{
-			Sleep(sleepDuration);
+			Sleep(static_cast<DWORD>(sleepDuration));
 		}
 		
 			
@@ -139,20 +145,32 @@ void sky::Engine::Update(float dt)
 
 void sky::Engine::Render()
 {
+	//SDL_Rect rect = { 0, 0, 200, 200 };
+	//IGraphics render
+
 	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 	SDL_RenderClear(_renderer);
+	m_Graphics->RenderTexture(_renderer, _texture, nullptr, nullptr, 0, nullptr, SDL_FLIP_NONE);
 	SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
-	rect.x = _tempX;
-	rect.y = _tempY;
+	rect.x = static_cast<int>(_tempX);
+	rect.y = static_cast<int>(_tempY);
 
 	SDL_RenderFillRect(_renderer, &rect);
 	SDL_SetRenderDrawColor(_renderer, 0, 255, 0, 255);
 	SDL_RenderDrawLine(_renderer, 0, 300, 800, 300);
+	
+	
+
+	//SDL_RenderCopyEx(_renderer, _texture, nullptr, nullptr, 0.0, nullptr, SDL_FLIP_NONE);
 	SDL_RenderPresent(_renderer);
 }
 
 void sky::Engine::Shutdown()
 {
+	if (m_Graphics != nullptr)
+	{
+		delete m_Graphics;
+	}
 	if (m_Input != nullptr)
 	{
 		delete m_Input;

@@ -27,7 +27,19 @@
     <ClInclude Include="includes\ConsoleLogger.h">
       <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Graphics.h">
+    <ClInclude Include="sources\SDLGraphics.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\RectI.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\RectF.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Color.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Flip.h">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +56,10 @@
     <ClCompile Include="sources\FileLogger.cpp">
       <Filter>sources</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Graphics.cpp">
+    <ClCompile Include="sources\SDLGraphics.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="includes\Color.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

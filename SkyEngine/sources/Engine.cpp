@@ -5,8 +5,9 @@
 #include <SdlInput.h>
 #include <ConsoleLogger.h>
 #include <FileLogger.h>
-#include "Graphics.h"
+#include "SDLGraphics.h"
 #include <SDL_image.h>
+#include "vld.h"
 
 
 static SDL_Window* _window = nullptr;

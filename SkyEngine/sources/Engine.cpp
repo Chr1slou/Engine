@@ -31,7 +31,7 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 
 	m_Input = new SdlInput();
 	m_Graphics = new Graphics();
-
+	m_Graphics->Initialize(title, w, h);
 	
 	return true;
 }

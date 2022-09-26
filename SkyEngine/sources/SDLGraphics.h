@@ -10,6 +10,7 @@ using namespace SkyEngine;
 using namespace std;
 
 struct SDL_Texture;
+struct SDL_Window;
 struct SDL_Renderer;
 
 class Graphics final : public sky::IGraphics

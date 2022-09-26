@@ -1,10 +1,16 @@
 #pragma once
-#include <Engine.h>
 
+#include <Color.h>
 #include <iostream>
+#include <map>
+#include <Engine.h>
+using namespace SkyEngine;
+
 
 using namespace std;
+
 struct SDL_Texture;
+struct SDL_Renderer;
 
 class Graphics final : public sky::IGraphics
 {
@@ -12,13 +18,14 @@ public:
 
 	Graphics();
 	virtual ~Graphics();
-	virtual SDL_Texture* LoadTexture(SDL_Renderer* m_Renderer, string filename) override;
+	virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, string filename) override;
 	virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) override;
 	
 
 	virtual bool Initialize(const std::string& title, int w, int h) override;
 	virtual void Shutdown() override;
 	virtual void SetColor(const Color& color) override;
+	virtual void SetTextureMode(size_t ID, const Color& color) override;
 	virtual void Clear() override;
 	virtual void Present() override;
 	virtual void DrawRect(float x, float y, float w, float h, const Color& color) override;
@@ -37,4 +44,9 @@ public:
 		float y, const Color& color) override;
 	virtual void GetTextSize(const std::string& text, size_t fontId, int* w, int* h) override;
 
+private:
+	SDL_Renderer* m_Renderer = nullptr;
+	SDL_Window* m_Window = nullptr;
+
+	map<size_t, SDL_Texture*> m_TextureMapCache;
 };

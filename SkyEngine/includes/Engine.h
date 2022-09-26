@@ -4,7 +4,7 @@
 #include "RectF.h"
 #include "Color.h"
 #include "Flip.h"
-
+using SkyEngine::Color;
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -43,7 +43,7 @@ namespace sky {
 	{
 	public:
 		virtual ~IGraphics() = default;
-		virtual SDL_Texture* LoadTexture(SDL_Renderer* m_Renderer, std::string filename) = 0;
+		virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, std::string filename) = 0;
 		virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) = 0;
 
 
@@ -51,6 +51,7 @@ namespace sky {
 		virtual bool Initialize(const std::string& title, int w, int h) = 0;
 		virtual void Shutdown() = 0;
 		virtual void SetColor(const Color& color) = 0;
+		virtual void SetTextureMode(size_t ID, const Color& color) = 0;
 		virtual void Clear() = 0;
 		virtual void Present() = 0;
 		virtual void DrawRect(float x, float y, float w, float h, const Color& color) = 0;
@@ -76,10 +77,17 @@ namespace sky {
 
 	class Engine final {
 	public:
+		static Engine& Get()
+		{
+			static Engine _instance;
+			return _instance;
+		}
+
 		bool Init(const std::string& title, int w, int h);
 		void Start();
-		IInput& Input() const { return *m_Input; }
 		static void Exit();
+		IInput& Input() const { return *m_Input; }
+		ILogger& Logger() const { return *m_Logger; }
 
 	private:
 		void ProcessInput();

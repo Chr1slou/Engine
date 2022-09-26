@@ -10,8 +10,8 @@
 #include "vld.h"
 
 
-static SDL_Window* _window = nullptr;
-static SDL_Renderer* _renderer = nullptr;
+
+
 static SDL_Texture* _texture = nullptr;
 static SDL_Rect rect = { 0 };
 static unsigned char const* _keys = nullptr;
@@ -27,31 +27,7 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 #else
 	m_Logger = new FileLogger();
 #endif
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-	{
-		m_Logger->Write( SDL_GetError());
-		return false;
-	}
-	int _x = SDL_WINDOWPOS_CENTERED;
-	int _y = SDL_WINDOWPOS_CENTERED;
-	uint32_t flags = SDL_WINDOW_TOOLTIP | SDL_WINDOW_RESIZABLE;
-
-	_window = SDL_CreateWindow(title.c_str(), _x, _y, w, h, flags);
-
-	if(!_window)
-	{
-		m_Logger->Write(SDL_GetError());
-		return false;
-	}
-
-	flags = SDL_RENDERER_ACCELERATED;
-
-	_renderer = SDL_CreateRenderer(_window, -1, flags);
-	if (!_renderer)
-	{
-		m_Logger->Write(SDL_GetError());
-		return false;
-	}
+	
 
 	m_Input = new SdlInput();
 	m_Graphics = new Graphics();
@@ -64,7 +40,7 @@ void sky::Engine::Start()
 {
 	const char* file = "assets/title.png";
 	//Load texture
-	_texture = m_Graphics->LoadTexture(_renderer, "assets/title.png");
+	//_texture = m_Graphics->LoadTexture("assets/title.png");
 	//_texture = IMG_LoadTexture(_renderer,"assets/title.png");
 	//cube dimensions
 	rect.x = 0;
@@ -149,21 +125,18 @@ void sky::Engine::Render()
 	//SDL_Rect rect = { 0, 0, 200, 200 };
 	//IGraphics render
 
-	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
-	SDL_RenderClear(_renderer);
-	m_Graphics->RenderTexture(_renderer, _texture, nullptr, nullptr, 0, nullptr, SDL_FLIP_NONE);
-	SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+	/*SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
+	m_Graphics->RenderTexture(m_Renderer, _texture, nullptr, nullptr, 0, nullptr, SDL_FLIP_NONE);
+	SDL_SetRenderDrawColor(m_Renderer, 255, 0, 0, 255);
 	rect.x = static_cast<int>(_tempX);
 	rect.y = static_cast<int>(_tempY);
 
-	SDL_RenderFillRect(_renderer, &rect);
-	SDL_SetRenderDrawColor(_renderer, 0, 255, 0, 255);
-	SDL_RenderDrawLine(_renderer, 0, 300, 800, 300);
+	SDL_SetRenderDrawColor(m_Renderer, 0, 255, 0, 255);
 	
 	
 
-	//SDL_RenderCopyEx(_renderer, _texture, nullptr, nullptr, 0.0, nullptr, SDL_FLIP_NONE);
-	SDL_RenderPresent(_renderer);
+	SDL_RenderCopyEx(m_Renderer, _texture, nullptr, nullptr, 0.0, nullptr, SDL_FLIP_NONE);
+	*/
 }
 
 void sky::Engine::Shutdown()
@@ -181,7 +154,8 @@ void sky::Engine::Shutdown()
 		m_Logger->CloseLog();
 		delete m_Logger;
 	}
-	SDL_DestroyRenderer(_renderer);
-	SDL_DestroyWindow(_window);
-	SDL_Quit();
+	
 }
+
+
+

@@ -155,6 +155,7 @@
     <ClInclude Include="includes\RectF.h" />
     <ClInclude Include="includes\RectI.h" />
     <ClInclude Include="includes\SdlInput.h" />
+    <ClInclude Include="includes\Texture.h" />
     <ClInclude Include="sources\SDLGraphics.h" />
   </ItemGroup>
   <ItemGroup>

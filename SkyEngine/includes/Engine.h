@@ -13,6 +13,10 @@ struct SDL_Point;
 
 
 namespace sky {
+
+	/// <summary>
+	/// input interface
+	/// </summary>
 	class IInput
 	{
 	public:
@@ -26,7 +30,9 @@ namespace sky {
 		friend class Engine;
 		virtual void Update() = 0;
 	};
-
+	/// <summary>
+	/// logger interface
+	/// </summary>
 	class ILogger
 	{
 	public:
@@ -38,13 +44,15 @@ namespace sky {
 	
 	};
 
-
+	/// <summary>
+	/// graphics interface
+	/// </summary>
 	class IGraphics
 	{
 	public:
 		virtual ~IGraphics() = default;
-		virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, std::string filename) = 0;
-		virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) = 0;
+		//virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, std::string filename) = 0;
+		//virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) = 0;
 
 
 
@@ -71,10 +79,31 @@ namespace sky {
 		virtual void GetTextSize(const std::string& text, size_t fontId, int* w, int* h) = 0;
 	};
 
+	/// <summary>
+	/// audio interface
+	/// </summary>
+	class IAudio
+	{
+	public:
 
+		virtual ~IAudio() = default;
+		virtual size_t LoadMusic(const std::string& filename) = 0;
+		virtual size_t LoadSound(const std::string& filename) = 0;
+		virtual void PlayMusic(size_t id) = 0;
+		virtual void PlayMusic(size_t id, int loop) = 0;
+		virtual void PlaySFX(size_t id) = 0;
+		virtual void PlaySFX(size_t id, int loop) = 0;
+		virtual void PauseMusic() = 0;
+		virtual void StopMusic() = 0;
+		virtual void ResumeMusic() = 0;
+		virtual void SetVolume(int volume) = 0;
+		virtual void SetVolume(size_t soundId, int volume) = 0;
 
+	};
 	
-
+	/// <summary>
+	/// class which manages the element to create the game
+	/// </summary>
 	class Engine final {
 	public:
 		static Engine& Get()

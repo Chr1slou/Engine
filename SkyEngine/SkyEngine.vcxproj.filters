@@ -45,6 +45,9 @@
     <ClInclude Include="includes\Texture.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="includes\SDLAudio.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Engine.cpp">
@@ -63,6 +66,9 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="includes\Color.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SDLAudio.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,9 @@
 #pragma once
 #include <Engine.h>
+
+/// <summary>
+/// input manager
+/// </summary>
 class SdlInput final : public sky::IInput {
 public:
 	SdlInput();

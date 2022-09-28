@@ -5,21 +5,24 @@
 #include <map>
 #include <Engine.h>
 using namespace SkyEngine;
-
-
 using namespace std;
 
 struct SDL_Texture;
 struct SDL_Renderer;
+struct SDL_Window;
+typedef struct _TTF_Font TTF_Font;
 
-class Graphics final : public sky::IGraphics
+/// <summary>
+/// service provider for the window, textures and font rendering
+/// </summary>
+class SDLGraphics final : public sky::IGraphics
 {
 public:
 
-	Graphics();
-	virtual ~Graphics();
-	virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, string filename) override;
-	virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) override;
+	SDLGraphics();
+	virtual ~SDLGraphics();
+	//virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, string filename) override;
+	//virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) override;
 	
 
 	virtual bool Initialize(const std::string& title, int w, int h) override;
@@ -49,4 +52,5 @@ private:
 	SDL_Window* m_Window = nullptr;
 
 	map<size_t, SDL_Texture*> m_TextureMapCache;
+	map<size_t, TTF_Font*> m_FontMapCache;
 };

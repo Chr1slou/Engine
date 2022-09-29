@@ -158,6 +158,7 @@
     <ClInclude Include="includes\SDLAudio.h" />
     <ClInclude Include="includes\SdlInput.h" />
     <ClInclude Include="includes\Texture.h" />
+    <ClInclude Include="includes\WorldService.h" />
     <ClInclude Include="sources\SDLGraphics.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClCompile Include="sources\SDLAudio.cpp" />
     <ClCompile Include="sources\SDLGraphics.cpp" />
     <ClCompile Include="sources\SdlInput.cpp" />
+    <ClCompile Include="sources\WorldService.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

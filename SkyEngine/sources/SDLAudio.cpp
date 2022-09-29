@@ -91,7 +91,7 @@ void SDLAudio::PlaySFX(size_t id)
 //If the specified channel is -1, play on the first free channel
 void SDLAudio::PlaySFX(size_t id, int loop)
 {
-	Mix_PlayChannel(-1, m_SoundMapCache[id], 0);
+	Mix_PlayChannel(-1, m_SoundMapCache[id], loop);
 }
 
 

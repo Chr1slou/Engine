@@ -100,6 +100,16 @@ namespace sky {
 		virtual void SetVolume(size_t soundId, int volume) = 0;
 
 	};
+
+	class IWorld
+	{
+	public:
+
+		virtual ~IWorld() = default;
+		virtual void Find() = 0;
+		virtual void Add() = 0;
+		virtual void Remove() = 0;
+	};
 	
 	/// <summary>
 	/// class which manages the element to create the game

@@ -17,8 +17,8 @@
 
 
 
-static SDL_Texture* _texture = nullptr;
-static SDL_Rect rect = { 0 };
+//static SDL_Texture* _texture = nullptr;
+//static SDL_Rect rect = { 0 };
 static unsigned char const* _keys = nullptr;
 static float _tempX = 400;
 static float _tempY = 230;
@@ -70,10 +70,10 @@ void sky::Engine::Start()
 	mario_image_id = m_Graphics->LoadTexture("assets/mario.png");
 
 	font_id = m_Graphics->LoadFont("./assets/mario.ttf",100);
-	//sample_sound_id = m_Audio->LoadSound("assets/sounds/jump.wav");
-	//background_music_id = m_Audio->LoadMusic("assets/Track 1.mp3");
-	//m_Audio->PlayMusic(background_music_id);
-	
+	sample_sound_id = m_Audio->LoadSound("assets/sounds/jump.wav");
+	background_music_id = m_Audio->LoadMusic("assets/track1.wav");
+	m_Audio->PlayMusic(background_music_id);
+	m_Audio->PlaySFX(sample_sound_id, 3);
 	////cube dimensions
 	//rect.x = 0;
 	//rect.y = 0;
@@ -120,9 +120,7 @@ void sky::Engine::Exit()
 /// </summary>
 void sky::Engine::ProcessInput()
 {
-
 	m_Input -> Update();
-	
 }
 
 void sky::Engine::Update(float dt)
@@ -161,10 +159,17 @@ void sky::Engine::Update(float dt)
 void sky::Engine::Render()
 {
 	m_Graphics->SetColor(Color::BLACK);
+	//clear the buffer
 	m_Graphics->Clear();
+
+	//draw in buffer
 	m_Graphics->DrawTexture(background_texture_id, Color::WHITE);
 	m_Graphics->DrawTexture(mario_image_id, {_tempX, _tempY, 64, 70 }, Color::WHITE);
+
+	m_Graphics->FillRect({ 100, 100, 100, 100 }, Color::BLUEVIOLET);
 	m_Graphics->DrawString("Labo 4", font_id, 20.0f, 20.0f, Color::RED);
+
+	//render buffer
 	m_Graphics->Present();
 }
 

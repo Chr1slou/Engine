@@ -601,7 +601,7 @@ extern DECLSPEC Mix_Chunk * SDLCALL Mix_LoadWAV_RW(SDL_RWops *src, int freesrc);
  * \sa Mix_FreeChunk
  */
 extern DECLSPEC Mix_Chunk * SDLCALL Mix_LoadWAV(const char *file);
-
+#define Mix_LoadWAV(file)   Mix_LoadWAV_RW(SDL_RWFromFile(file, "rb"), 1)
 
 /**
  * Load a supported audio format into a music object.
@@ -1754,6 +1754,7 @@ extern DECLSPEC int SDLCALL Mix_GroupNewer(int tag);
  *        since 2.0.0).
  */
 extern DECLSPEC int SDLCALL Mix_PlayChannel(int channel, Mix_Chunk *chunk, int loops);
+#define Mix_PlayChannel(channel,chunk,loops) Mix_PlayChannelTimed(channel,chunk,loops,-1)
 
 /**
  * Play an audio chunk on a specific channel for a maximum time.

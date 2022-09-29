@@ -3,8 +3,12 @@
 #include<time.h>
 #include <windows.h>
 #include <SdlInput.h>
+#if _DEBUG
 #include <ConsoleLogger.h>
+#else
 #include <FileLogger.h>
+#endif
+
 #include "SDLGraphics.h"
 #include "SDLAudio.h"
 #include <SDL_image.h>
@@ -16,8 +20,8 @@
 static SDL_Texture* _texture = nullptr;
 static SDL_Rect rect = { 0 };
 static unsigned char const* _keys = nullptr;
-static float _tempX = 0;
-static float _tempY = 0;
+static float _tempX = 400;
+static float _tempY = 230;
 static bool isRunning = false;
 
 //assets IDs
@@ -37,17 +41,18 @@ size_t font_id = 0;
 /// <returns></returns>
 bool sky::Engine::Init(const std::string& title, int w, int h)
 {
-//#if _DEBUG
-		//m_Logger = new ConsoleLogger();
-//#else
+#if _DEBUG
+	m_Logger = new ConsoleLogger();
+#else
 	m_Logger = new FileLogger();
-//#endif
+#endif
+
 	m_Logger->Write("Wooowww");
 	
 
 	m_Input = new SdlInput();
 	m_Graphics = new SDLGraphics();
-	//m_Audio = new SDLAudio();
+	m_Audio = new SDLAudio();
 	m_Graphics->Initialize(title, w, h);
 	
 	return true;
@@ -64,7 +69,7 @@ void sky::Engine::Start()
 	background_texture_id = m_Graphics->LoadTexture("assets/background.png");
 	mario_image_id = m_Graphics->LoadTexture("assets/mario.png");
 
-	//font_id = m_Graphics->LoadFont("assets/mario.ttf");
+	font_id = m_Graphics->LoadFont("./assets/mario.ttf",100);
 	//sample_sound_id = m_Audio->LoadSound("assets/sounds/jump.wav");
 	//background_music_id = m_Audio->LoadMusic("assets/Track 1.mp3");
 	//m_Audio->PlayMusic(background_music_id);
@@ -159,7 +164,7 @@ void sky::Engine::Render()
 	m_Graphics->Clear();
 	m_Graphics->DrawTexture(background_texture_id, Color::WHITE);
 	m_Graphics->DrawTexture(mario_image_id, {_tempX, _tempY, 64, 70 }, Color::WHITE);
-	//m_Graphics->DrawString("Labo 4", font_id, 20.0f, 20.0f, Color::RED);
+	m_Graphics->DrawString("Labo 4", font_id, 20.0f, 20.0f, Color::RED);
 	m_Graphics->Present();
 }
 
@@ -169,6 +174,7 @@ void sky::Engine::Render()
 /// </summary>
 void sky::Engine::Shutdown()
 {
+	m_Graphics->Shutdown();
 	if (m_Graphics != nullptr)
 	{
 		delete m_Graphics;

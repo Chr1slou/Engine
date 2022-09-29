@@ -53,5 +53,5 @@ private:
 	SDL_Window* m_Window = nullptr;
 
 	map<size_t, SDL_Texture*> m_TextureMapCache;
-	//map<size_t, TTF_Font*> m_FontMapCache;
+	map<size_t, TTF_Font*> m_FontMapCache;
 };

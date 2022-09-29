@@ -2,11 +2,12 @@
 #include <iostream>
 #include <map>
 #include <Engine.h>
+#include<SDL_mixer.h>
 using namespace SkyEngine;
 using namespace std;
 
-struct Mix_Chunk;
-typedef struct _Mix_Music Mix_Music;
+//struct Mix_Chunk;
+//typedef struct _Mix_Music Mix_Music;
 
 class SDLAudio final : public sky::IAudio
 {

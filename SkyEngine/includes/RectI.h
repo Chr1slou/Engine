@@ -1,4 +1,8 @@
 #pragma once
+
+/// <summary>
+/// rect of ints
+/// </summary>
 struct RectI
 {
 	int x;

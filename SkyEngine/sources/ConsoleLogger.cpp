@@ -7,9 +7,12 @@ using namespace std;
 
 ConsoleLogger::ConsoleLogger()
 {
-	OpenLog();
+	OpenLog(); 
 }
 
+/// <summary>
+/// open the console
+/// </summary>
 void ConsoleLogger::OpenLog()
 {
 	AllocConsole();
@@ -17,12 +20,18 @@ void ConsoleLogger::OpenLog()
 }
 
 
-
+/// <summary>
+/// close the console
+/// </summary>
 void ConsoleLogger::CloseLog()
 {
 	FreeConsole();
 }
 
+/// <summary>
+/// display a message in the console
+/// </summary>
+/// <param name="message"> message to display </param>
 void ConsoleLogger::Write(string message)
 {
 	cout << message;

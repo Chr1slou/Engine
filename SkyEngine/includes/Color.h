@@ -4,6 +4,9 @@ namespace SkyEngine
 {
     typedef unsigned char uchar;
 
+    /// <summary>
+    /// colors list
+    /// </summary>
     class Color
     {
     public:

@@ -1,5 +1,10 @@
 #pragma once
 #include <Engine.h>
+
+
+/// <summary>
+/// service provider which creates a console and displays logs
+/// </summary>
 class ConsoleLogger final : public sky::ILogger {
 public:
 	ConsoleLogger();

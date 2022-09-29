@@ -19,6 +19,14 @@ static float _tempX = 0;
 static float _tempY = 0;
 static bool isRunning = false;
 
+
+/// <summary>
+/// init the services
+/// </summary>
+/// <param name="title"></param>
+/// <param name="w"></param>
+/// <param name="h"></param>
+/// <returns></returns>
 bool sky::Engine::Init(const std::string& title, int w, int h)
 {
 #if _DEBUG
@@ -36,6 +44,10 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 	return true;
 }
 
+
+/// <summary>
+///  game loop
+/// </summary>
 void sky::Engine::Start()
 {
 	const char* file = "assets/title.png";
@@ -83,6 +95,9 @@ void sky::Engine::Exit()
 	isRunning = false;
 }
 
+/// <summary>
+/// manage the inputs
+/// </summary>
 void sky::Engine::ProcessInput()
 {
 
@@ -120,25 +135,18 @@ void sky::Engine::Update(float dt)
 	
 }
 
+/// <summary>
+/// display images in the window
+/// </summary>
 void sky::Engine::Render()
 {
-	//SDL_Rect rect = { 0, 0, 200, 200 };
-	//IGraphics render
-
-	/*SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
-	m_Graphics->RenderTexture(m_Renderer, _texture, nullptr, nullptr, 0, nullptr, SDL_FLIP_NONE);
-	SDL_SetRenderDrawColor(m_Renderer, 255, 0, 0, 255);
-	rect.x = static_cast<int>(_tempX);
-	rect.y = static_cast<int>(_tempY);
-
-	SDL_SetRenderDrawColor(m_Renderer, 0, 255, 0, 255);
-	
-	
-
-	SDL_RenderCopyEx(m_Renderer, _texture, nullptr, nullptr, 0.0, nullptr, SDL_FLIP_NONE);
-	*/
+	//TODO demo
 }
 
+
+/// <summary>
+/// free allocated memory
+/// </summary>
 void sky::Engine::Shutdown()
 {
 	if (m_Graphics != nullptr)

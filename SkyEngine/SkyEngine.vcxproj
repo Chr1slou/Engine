@@ -154,6 +154,7 @@
     <ClInclude Include="includes\Flip.h" />
     <ClInclude Include="includes\RectF.h" />
     <ClInclude Include="includes\RectI.h" />
+    <ClInclude Include="includes\SDLAudio.h" />
     <ClInclude Include="includes\SdlInput.h" />
     <ClInclude Include="includes\Texture.h" />
     <ClInclude Include="sources\SDLGraphics.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="sources\ConsoleLogger.cpp" />
     <ClCompile Include="sources\Engine.cpp" />
     <ClCompile Include="sources\FileLogger.cpp" />
+    <ClCompile Include="sources\SDLAudio.cpp" />
     <ClCompile Include="sources\SDLGraphics.cpp" />
     <ClCompile Include="sources\SdlInput.cpp" />
   </ItemGroup>

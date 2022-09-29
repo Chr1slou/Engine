@@ -180,6 +180,10 @@ void sky::Engine::Render()
 void sky::Engine::Shutdown()
 {
 	m_Graphics->Shutdown();
+	if (m_Audio != nullptr)
+	{
+		delete m_Audio;
+	}
 	if (m_Graphics != nullptr)
 	{
 		delete m_Graphics;

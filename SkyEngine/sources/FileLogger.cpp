@@ -2,12 +2,12 @@
 #include "SDL.h"
 #include <Windows.h>
 
-FileLogger::FileLogger() : FileLogger("default.txt")
+FileLogger::FileLogger() : FileLogger("GameLogs.txt")
 {
 	
 }
 
-FileLogger::FileLogger(const string filename) 
+FileLogger::FileLogger(const string filename) : m_MyFile(filename)
 {
 	
 }
@@ -19,6 +19,8 @@ FileLogger::~FileLogger()
 
 /// <summary>
 /// open a file for the logs
+/// 
+/// not used for now
 /// </summary>
 void FileLogger::OpenLog()
 {

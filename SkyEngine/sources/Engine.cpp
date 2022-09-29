@@ -6,6 +6,7 @@
 #include <ConsoleLogger.h>
 #include <FileLogger.h>
 #include "SDLGraphics.h"
+#include "SDLAudio.h"
 #include <SDL_image.h>
 #include "vld.h"
 
@@ -19,6 +20,13 @@ static float _tempX = 0;
 static float _tempY = 0;
 static bool isRunning = false;
 
+//assets IDs
+size_t background_texture_id = 0;
+size_t mario_image_id = 0;
+size_t background_music_id = 0;
+size_t sample_sound_id = 0;
+size_t font_id = 0;
+
 
 /// <summary>
 /// init the services
@@ -29,16 +37,17 @@ static bool isRunning = false;
 /// <returns></returns>
 bool sky::Engine::Init(const std::string& title, int w, int h)
 {
-#if _DEBUG
-		m_Logger = new ConsoleLogger();
-		m_Logger->Write("Wooowww");
-#else
+//#if _DEBUG
+		//m_Logger = new ConsoleLogger();
+//#else
 	m_Logger = new FileLogger();
-#endif
+//#endif
+	m_Logger->Write("Wooowww");
 	
 
 	m_Input = new SdlInput();
-	m_Graphics = new Graphics();
+	m_Graphics = new SDLGraphics();
+	//m_Audio = new SDLAudio();
 	m_Graphics->Initialize(title, w, h);
 	
 	return true;
@@ -51,14 +60,20 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 void sky::Engine::Start()
 {
 	const char* file = "assets/title.png";
-	//Load texture
-	//_texture = m_Graphics->LoadTexture("assets/title.png");
-	//_texture = IMG_LoadTexture(_renderer,"assets/title.png");
-	//cube dimensions
-	rect.x = 0;
-	rect.y = 0;
-	rect.w = 100;
-	rect.h = 100;
+	//Load assets
+	background_texture_id = m_Graphics->LoadTexture("assets/background.png");
+	mario_image_id = m_Graphics->LoadTexture("assets/mario.png");
+
+	//font_id = m_Graphics->LoadFont("assets/mario.ttf");
+	//sample_sound_id = m_Audio->LoadSound("assets/sounds/jump.wav");
+	//background_music_id = m_Audio->LoadMusic("assets/Track 1.mp3");
+	//m_Audio->PlayMusic(background_music_id);
+	
+	////cube dimensions
+	//rect.x = 0;
+	//rect.y = 0;
+	//rect.w = 100;
+	//rect.h = 100;
 	isRunning = true;
 	clock_t _lastTime = clock();
 	float MS_PER_FRAME = 1000 / 60;
@@ -140,7 +155,12 @@ void sky::Engine::Update(float dt)
 /// </summary>
 void sky::Engine::Render()
 {
-	//TODO demo
+	m_Graphics->SetColor(Color::BLACK);
+	m_Graphics->Clear();
+	m_Graphics->DrawTexture(background_texture_id, Color::WHITE);
+	m_Graphics->DrawTexture(mario_image_id, {_tempX, _tempY, 64, 70 }, Color::WHITE);
+	//m_Graphics->DrawString("Labo 4", font_id, 20.0f, 20.0f, Color::RED);
+	m_Graphics->Present();
 }
 
 

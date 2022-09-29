@@ -130,7 +130,7 @@ namespace sky {
 		IInput* m_Input = nullptr;
 		ILogger* m_Logger = nullptr;
 		IGraphics* m_Graphics = nullptr;
-
+		IAudio* m_Audio = nullptr;
 	};
 
 	

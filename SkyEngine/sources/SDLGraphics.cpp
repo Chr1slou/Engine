@@ -67,7 +67,7 @@ bool SDLGraphics::Initialize(const std::string& title, int w, int h)
 		return false;
 	}
 
-	TTF_Init();
+	//TTF_Init();
 	return false;
 }
 
@@ -76,7 +76,7 @@ bool SDLGraphics::Initialize(const std::string& title, int w, int h)
 /// </summary>
 void SDLGraphics::Shutdown()
 {
-	TTF_Quit();
+	//TTF_Quit();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_Window);
 	SDL_Quit();
@@ -313,17 +313,17 @@ void SDLGraphics::GetTextureSize(size_t id, int* w, int* h)
 size_t SDLGraphics::LoadFont(const std::string& filename, int fontSize)
 {
 
-	const size_t _fontId = std::hash<std::string>()(filename);
-	if (m_TextureMapCache.count(_fontId) != 0)
-	{
-		return _fontId;
-	}
-	TTF_Font* _font = TTF_OpenFont(filename.c_str(), fontSize);
-	if (_font != nullptr)
-	{
-		m_FontMapCache[_fontId] = _font;
-		return _fontId;
-	}
+	//const size_t _fontId = std::hash<std::string>()(filename);
+	//if (m_TextureMapCache.count(_fontId) != 0)
+	//{
+	//	return _fontId;
+	//}
+	//TTF_Font* _font = TTF_OpenFont(filename.c_str(), fontSize);
+	//if (_font != nullptr)
+	//{
+	//	m_FontMapCache[_fontId] = _font;
+	//	return _fontId;
+	//}
 	return -1;
 }
 
@@ -338,7 +338,7 @@ size_t SDLGraphics::LoadFont(const std::string& filename, int fontSize)
 /// <param name="color"> color of the font </param>
 void SDLGraphics::DrawString(const std::string& text, size_t fontId, float x, float y, const Color& color)
 {
-	if (m_FontMapCache.count(fontId) > 0)
+	/*if (m_FontMapCache.count(fontId) > 0)
 	{
 		TTF_Font* _font = m_FontMapCache[fontId];
 		const SDL_Color _color = {static_cast<Uint8>(color.red), static_cast<Uint8>(color.green),static_cast<Uint8>(color.blue),static_cast<Uint8>(color.alpha)};
@@ -348,7 +348,7 @@ void SDLGraphics::DrawString(const std::string& text, size_t fontId, float x, fl
 		g_TextureBuffer = SDL_CreateTextureFromSurface(m_Renderer, _surface);
 		SDL_RenderCopy(m_Renderer, g_TextureBuffer, nullptr, &_dst);
 		SDL_FreeSurface(_surface);
-	}
+	}*/
 
 }
 
@@ -362,7 +362,7 @@ void SDLGraphics::DrawString(const std::string& text, size_t fontId, float x, fl
 /// <param name="h">pointer where to store the height of the text </param>
 void SDLGraphics::GetTextSize(const std::string& text, size_t fontId, int* w, int* h)
 {
-	if (m_FontMapCache.count(fontId) > 0)
+	/*if (m_FontMapCache.count(fontId) > 0)
 	{
 		TTF_Font* _font = m_FontMapCache[fontId];
 		TTF_SizeText(_font, text.c_str(), w, h);
@@ -372,5 +372,5 @@ void SDLGraphics::GetTextSize(const std::string& text, size_t fontId, int* w, in
 	{
 		*w = 0;
 		*h = 0;
-	}
+	}*/
 }

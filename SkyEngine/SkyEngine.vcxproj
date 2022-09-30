@@ -151,6 +151,7 @@
     <ClInclude Include="includes\Color.h" />
     <ClInclude Include="includes\ConsoleLogger.h" />
     <ClInclude Include="includes\Engine.h" />
+    <ClInclude Include="includes\Entity.h" />
     <ClInclude Include="includes\FileLogger.h" />
     <ClInclude Include="includes\Flip.h" />
     <ClInclude Include="includes\RectF.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="includes\Color.cpp" />
     <ClCompile Include="sources\ConsoleLogger.cpp" />
     <ClCompile Include="sources\Engine.cpp" />
+    <ClCompile Include="sources\Entity.cpp" />
     <ClCompile Include="sources\FileLogger.cpp" />
     <ClCompile Include="sources\SDLAudio.cpp" />
     <ClCompile Include="sources\SDLGraphics.cpp" />

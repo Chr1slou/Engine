@@ -11,6 +11,8 @@ struct SDL_Renderer;
 struct SDL_Rect;
 struct SDL_Point;
 
+class Entity;
+
 
 namespace sky {
 
@@ -106,9 +108,9 @@ namespace sky {
 	public:
 
 		virtual ~IWorld() = default;
-		virtual void Find() = 0;
-		virtual void Add() = 0;
-		virtual void Remove() = 0;
+		virtual Entity* Find(const std::string& name) = 0;
+		virtual void Add(Entity* entity) = 0;
+		virtual void Remove(Entity* entity) = 0;
 	};
 	
 	/// <summary>

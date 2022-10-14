@@ -32,3 +32,39 @@ void WorldService::Remove(Entity* entity)
 		}
 	}
 }
+
+Entity* WorldService::Create(std::string name)
+{
+	Entity* _e = new Entity(name);
+	Add(_e);
+	return _e;
+}
+
+void WorldService::Load(const std::string& scene)
+{
+	if (m_Scenes.count(scene) > 0) {
+		Unload();
+		m_CurrentScene = m_Scenes[scene];
+		m_CurrentScene->Load();
+	}
+}
+
+void WorldService::Unload()
+{
+	if (m_CurrentScene != nullptr) {
+		for (auto entity : m_EntityInWorld) {
+			entity->Destroy();
+			delete entity;
+		}
+		m_EntityInWorld.clear();
+		m_EntityMap.clear();
+	}
+
+}
+
+void WorldService::Register(const std::string& name, IScene* scene)
+{
+	if (m_Scenes.count(name) == 0) {
+		m_Scenes[name] = scene;
+	}
+}

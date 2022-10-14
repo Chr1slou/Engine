@@ -3,17 +3,28 @@
 #include <map>
 #include <string>
 #include "Engine.h"
+
 class Entity;
 
-class WorldService : public sky::IWorld{
+using namespace sky;
+
+class WorldService : public IWorld{
 public:
 	WorldService();
 	~WorldService() = default;
 	void Add(Entity* entity) override; 
-	Entity* Find(const std::string& name);
-	void Remove(Entity* entity);
+	Entity* Find(const std::string& name) override;
+	void Remove(Entity* entity) override;
+	Entity* Create(std::string name) override;
+	void Load(const std::string& scene) override;
+	void Unload() override;
+	void Register(const std::string& name, IScene* scene) override;
+
 	
 private:
 	std::vector<Entity*> m_EntityInWorld;
 	std::map<std::string, Entity*> m_EntityMap;
+	std::map<std::string, IScene*> m_Scenes;
+	IScene* m_CurrentScene = nullptr;
+
 };

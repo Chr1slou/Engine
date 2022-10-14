@@ -15,3 +15,5 @@ void Entity::Draw()
 void Entity::Destroy()
 {
 }
+
+

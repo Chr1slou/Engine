@@ -18,5 +18,25 @@
     <ClCompile Include="sources\main.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Square.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MenuScene.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

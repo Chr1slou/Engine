@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="includes\Color.h" />
+    <ClInclude Include="includes\Component.h" />
     <ClInclude Include="includes\ConsoleLogger.h" />
     <ClInclude Include="includes\Engine.h" />
     <ClInclude Include="includes\Entity.h" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\Color.cpp" />
+    <ClCompile Include="sources\Component.cpp" />
     <ClCompile Include="sources\ConsoleLogger.cpp" />
     <ClCompile Include="sources\Engine.cpp" />
     <ClCompile Include="sources\Entity.cpp" />

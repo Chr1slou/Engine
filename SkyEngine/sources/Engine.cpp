@@ -11,14 +11,12 @@
 
 #include "SDLGraphics.h"
 #include "SDLAudio.h"
-#include <SDL_image.h>
+#include "WorldService.h"
 #include "vld.h"
 
 
 
 
-//static SDL_Texture* _texture = nullptr;
-//static SDL_Rect rect = { 0 };
 static unsigned char const* _keys = nullptr;
 static float _tempX = 400;
 static float _tempY = 230;
@@ -35,7 +33,7 @@ size_t font_id = 0;
 /// <summary>
 /// init the services
 /// </summary>
-/// <param name="title"></param>
+/// <param name="title"> string</param>
 /// <param name="w"></param>
 /// <param name="h"></param>
 /// <returns></returns>
@@ -54,7 +52,7 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 	m_Graphics = new SDLGraphics();
 	m_Audio = new SDLAudio();
 	m_Graphics->Initialize(title, w, h);
-	
+	m_World = new WorldService();
 	return true;
 }
 
@@ -74,11 +72,7 @@ void sky::Engine::Start()
 	background_music_id = m_Audio->LoadMusic("assets/track1.wav");
 	m_Audio->PlayMusic(background_music_id);
 	m_Audio->PlaySFX(sample_sound_id, 3);
-	////cube dimensions
-	//rect.x = 0;
-	//rect.y = 0;
-	//rect.w = 100;
-	//rect.h = 100;
+	
 	isRunning = true;
 	clock_t _lastTime = clock();
 	float MS_PER_FRAME = 1000 / 60;
@@ -179,6 +173,10 @@ void sky::Engine::Render()
 /// </summary>
 void sky::Engine::Shutdown()
 {
+	if (m_World != nullptr)
+	{
+		delete m_World;
+	}
 	m_Graphics->Shutdown();
 	if (m_Audio != nullptr)
 	{

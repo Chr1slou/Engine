@@ -6,10 +6,6 @@
 #include "Flip.h"
 using SkyEngine::Color;
 
-struct SDL_Texture;
-struct SDL_Renderer;
-struct SDL_Rect;
-struct SDL_Point;
 
 class Entity;
 
@@ -47,14 +43,32 @@ namespace sky {
 	};
 
 	/// <summary>
+	/// interface for updatable components
+	/// </summary>
+	class IUpdatable
+	{
+	public:
+		virtual ~IUpdatable() = default;
+		virtual void Update() = 0;
+	};
+
+	/// <summary>
+	/// interface for drawable components
+	/// </summary>
+	class IDrawable
+	{
+	public:
+		virtual ~IDrawable() = default;
+		virtual void Draw() = 0;
+	};
+
+	/// <summary>
 	/// graphics interface
 	/// </summary>
 	class IGraphics
 	{
 	public:
 		virtual ~IGraphics() = default;
-		//virtual SDL_Texture* LoadTextureTemp(SDL_Renderer* m_Renderer, std::string filename) = 0;
-		//virtual void RenderTexture(SDL_Renderer* m_Renderer, SDL_Texture* _tex, const SDL_Rect* _src, const SDL_Rect* _dst, const double angle, const SDL_Point* center, int _flip) = 0;
 
 
 
@@ -103,6 +117,15 @@ namespace sky {
 
 	};
 
+	/// <summary>
+	/// load the entities
+	/// </summary>
+	class IScene {
+	public:
+		virtual ~IScene() = default;
+		virtual void Load() = 0;
+	};
+
 	class IWorld
 	{
 	public:
@@ -110,8 +133,14 @@ namespace sky {
 		virtual ~IWorld() = default;
 		virtual Entity* Find(const std::string& name) = 0;
 		virtual void Add(Entity* entity) = 0;
+		virtual Entity* Create(std::string name) = 0;
 		virtual void Remove(Entity* entity) = 0;
+		virtual void Load(const std::string& scene) = 0;
+		virtual void Unload() = 0;
+		virtual void Register(const std::string& name, IScene* scene) = 0;
 	};
+
+
 	
 	/// <summary>
 	/// class which manages the element to create the game
@@ -129,6 +158,7 @@ namespace sky {
 		static void Exit();
 		IInput& Input() const { return *m_Input; }
 		ILogger& Logger() const { return *m_Logger; }
+		IWorld& World() const { return *m_World; }
 
 	private:
 		void ProcessInput();
@@ -143,6 +173,7 @@ namespace sky {
 		ILogger* m_Logger = nullptr;
 		IGraphics* m_Graphics = nullptr;
 		IAudio* m_Audio = nullptr;
+		IWorld* m_World = nullptr;
 	};
 
 	

@@ -56,16 +56,14 @@ Entity* WorldService::Create(std::string name)
 	return _e;
 }
 
-Entity* WorldService::Create(std::string name, RectF position)
-{
-	return nullptr;
-}
+
 
 void WorldService::Load(const std::string& scene)
 {
 	if (m_Scenes.count(scene) > 0) {
 		Unload();
 		m_CurrentScene = m_Scenes[scene];
+		
 		m_CurrentScene->Load();
 	}
 }
@@ -88,14 +86,15 @@ void WorldService::Register(const std::string& name, IScene* scene)
 	if (m_Scenes.count(name) == 0) {
 		m_Scenes[name] = scene;
 	}
+	m_Scenes[name]->SetName(name);
 }
 
 
 void WorldService::UnRegister(const std::string& name)
 {
-	if (m_Scenes.count(name) == 0) {
+	if (m_Scenes.count(name) != 0) {
 		IScene* temp = m_Scenes[name];
-		m_Scenes.erase(name);
+		m_Scenes.erase(name);////////
 		delete temp;
 	}
 	
@@ -105,7 +104,7 @@ void WorldService::ClearWorld()
 {
 	for (auto scene : m_Scenes)
 	{
-		UnRegister(scene.second);
+		delete scene.second;
 	}
 	m_Scenes.clear();
 

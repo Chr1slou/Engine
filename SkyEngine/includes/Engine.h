@@ -124,6 +124,11 @@ namespace sky {
 	public:
 		virtual ~IScene() = default;
 		virtual void Load() = 0;
+		virtual void SetName(const std::string& sceneName) = 0;
+		std::string& GetName() { return m_Name; }
+
+	private:
+		std::string m_Name;
 		//TODO rajouter un name et un getname
 	};
 
@@ -135,7 +140,6 @@ namespace sky {
 		virtual Entity* Find(const std::string& name) = 0;
 		virtual void Add(Entity* entity) = 0;
 		virtual Entity* Create(std::string name) = 0;
-		virtual Entity* Create(std::string name, RectF position) = 0;
 		virtual void Draw() = 0;
 		virtual void Update(float dt) = 0;
 		virtual void Remove(Entity* entity) = 0;

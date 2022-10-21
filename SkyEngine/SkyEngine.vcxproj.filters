@@ -57,6 +57,9 @@
     <ClInclude Include="includes\Component.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="includes\Ekeys.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Engine.cpp">

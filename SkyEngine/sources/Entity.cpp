@@ -37,9 +37,6 @@ Entity* Entity::Instantiate(const std::string& name)
 	return Engine::Get().World().Create(name);
 }
 
-void Entity::SetPosition(RectF transform)
-{
-	m_Transform = transform;
-}
+
 
 

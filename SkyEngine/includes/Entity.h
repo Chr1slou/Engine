@@ -18,8 +18,7 @@ public:
 	virtual void Draw();
 	virtual void Destroy();
 	virtual Entity* Instantiate(const std::string& name);
-	void SetPosition(RectF transform);
-	RectF GetPosition() { return m_Transform; }
+	
 
 	template<typename T>
 	T* AddComponent()
@@ -63,7 +62,6 @@ public:
 
 	std::string& GetName() { return m_Name; }
 protected:
-	RectF m_Transform;
 	std::string m_Name;
 	std::vector<IUpdatable*> m_Updatable;
 	std::vector<IDrawable*> m_Drawable;

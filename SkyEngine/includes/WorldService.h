@@ -18,7 +18,6 @@ public:
 	void Update(float dt) override;
 	void Remove(Entity* entity) override;
 	Entity* Create(std::string name) override;
-	Entity* Create(std::string name, RectF position) override;
 	void Load(const std::string& scene) override;
 	void Unload() override;
 	void Register(const std::string& name, IScene* scene) override;

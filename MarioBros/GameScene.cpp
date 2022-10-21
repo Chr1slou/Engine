@@ -22,3 +22,8 @@ void GameScene::Load()
 void GameScene::LoadTileset(const std::string& image, int tileW, int tileH, int col, int count)
 {
 }
+
+void GameScene::SetName(const std::string& sceneName)
+{
+	m_Name = sceneName;
+}

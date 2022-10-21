@@ -151,6 +151,7 @@
     <ClInclude Include="includes\Color.h" />
     <ClInclude Include="includes\Component.h" />
     <ClInclude Include="includes\ConsoleLogger.h" />
+    <ClInclude Include="includes\Ekeys.h" />
     <ClInclude Include="includes\Engine.h" />
     <ClInclude Include="includes\Entity.h" />
     <ClInclude Include="includes\FileLogger.h" />

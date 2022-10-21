@@ -328,6 +328,10 @@ size_t SDLGraphics::LoadFont(const std::string& filename, int fontSize)
 	return 0;
 }
 
+void SDLGraphics::LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count)
+{
+}
+
 
 /// <summary>
 /// render a string on screen

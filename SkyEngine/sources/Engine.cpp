@@ -119,7 +119,7 @@ void sky::Engine::ProcessInput()
 
 void sky::Engine::Update(float dt)
 {
-	
+	m_World->Update(dt);
 		if (m_Input->IsKeyDown(SDL_SCANCODE_W))
 		{
 			_tempY -= 200 * dt ;
@@ -157,12 +157,13 @@ void sky::Engine::Render()
 	m_Graphics->Clear();
 
 	//draw in buffer
-	m_Graphics->DrawTexture(background_texture_id, Color::WHITE);
+	/*m_Graphics->DrawTexture(background_texture_id, Color::WHITE);
 	m_Graphics->DrawTexture(mario_image_id, {_tempX, _tempY, 64, 70 }, Color::WHITE);
 
 	m_Graphics->FillRect({ 100, 100, 100, 100 }, Color::BLUEVIOLET);
 	m_Graphics->DrawString("Labo 4", font_id, 20.0f, 20.0f, Color::RED);
-
+*/
+	m_World->Draw();
 	//render buffer
 	m_Graphics->Present();
 }
@@ -175,6 +176,8 @@ void sky::Engine::Shutdown()
 {
 	if (m_World != nullptr)
 	{
+		m_World->Unload();
+		m_World->ClearWorld();
 		delete m_World;
 	}
 	m_Graphics->Shutdown();
@@ -195,6 +198,8 @@ void sky::Engine::Shutdown()
 		m_Logger->CloseLog();
 		delete m_Logger;
 	}
+	Engine* ptr = &Engine::Get();
+	delete ptr;
 	
 }
 

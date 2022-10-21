@@ -17,33 +17,56 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw();
 	virtual void Destroy();
+	virtual Entity* Instantiate(const std::string& name);
+	void SetPosition(RectF transform);
+	RectF GetPosition() { return m_Transform; }
 
 	template<typename T>
-	inline T AddComponent(T* cmp)
+	T* AddComponent()
 	{
+		T* cmp = new T(this);
 		const type_info* type = &typeid(*cmp);
-		m_componentByType.emplace(type, cmp);
+		if (m_componentByType.count(type) == 0)
+		{
 
-		IDrawable* comp = dynamic_cast<IDrawable*>(cmp);
+			m_componentByType.emplace(type, cmp);
+
+			auto comp = dynamic_cast<IDrawable*>(cmp);
 		
-		if (comp != nullptr)
-		{
-			m_Drawable.push_back(comp);
+			if (comp != nullptr)
+			{
+				m_Drawable.push_back(comp);
+			}
+		
+			auto cm = dynamic_cast<IUpdatable*>(cmp);
+		
+			if (cm != nullptr)
+			{
+				m_Updatable.push_back(cm);
+			}
+			return cmp;
 		}
-		
-		IUpdatable* cm = dynamic_cast<IUpdatable*>(cmp);
-		
-		if (cm != nullptr)
-		{
-			m_Updatable.push_back(cm);
-		}
-		
-		
+		return nullptr;
 	}
+	template <typename T>
+	T* GetComponent()
+	{
+		const type_info* type = &typeid(T);
+		if (m_componentByType.count(type) > 0)
+		{
+			return static_cast<T*>(m_componentByType[type]);
+		}
+
+		return nullptr;
+	}
+
+
 	std::string& GetName() { return m_Name; }
-private:
+protected:
+	RectF m_Transform;
 	std::string m_Name;
 	std::vector<IUpdatable*> m_Updatable;
 	std::vector<IDrawable*> m_Drawable;
-	std::map< type_info*, Component*> m_componentByType;
+	std::map<const type_info*, Component*> m_componentByType;
 };
+

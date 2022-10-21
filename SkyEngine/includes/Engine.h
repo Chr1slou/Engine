@@ -49,7 +49,7 @@ namespace sky {
 	{
 	public:
 		virtual ~IUpdatable() = default;
-		virtual void Update() = 0;
+		virtual void Update(float dt) = 0;
 	};
 
 	/// <summary>
@@ -124,6 +124,7 @@ namespace sky {
 	public:
 		virtual ~IScene() = default;
 		virtual void Load() = 0;
+		//TODO rajouter un name et un getname
 	};
 
 	class IWorld
@@ -134,10 +135,15 @@ namespace sky {
 		virtual Entity* Find(const std::string& name) = 0;
 		virtual void Add(Entity* entity) = 0;
 		virtual Entity* Create(std::string name) = 0;
+		virtual Entity* Create(std::string name, RectF position) = 0;
+		virtual void Draw() = 0;
+		virtual void Update(float dt) = 0;
 		virtual void Remove(Entity* entity) = 0;
 		virtual void Load(const std::string& scene) = 0;
 		virtual void Unload() = 0;
 		virtual void Register(const std::string& name, IScene* scene) = 0;
+		virtual void UnRegister(const std::string& name) = 0;
+		virtual void ClearWorld() = 0;
 	};
 
 
@@ -149,8 +155,12 @@ namespace sky {
 	public:
 		static Engine& Get()
 		{
-			static Engine _instance;
-			return _instance;
+			static Engine* _instance;
+			if(_instance == nullptr)
+			{
+				_instance = new Engine();
+			}
+			return *_instance;
 		}
 
 		bool Init(const std::string& title, int w, int h);
@@ -159,8 +169,14 @@ namespace sky {
 		IInput& Input() const { return *m_Input; }
 		ILogger& Logger() const { return *m_Logger; }
 		IWorld& World() const { return *m_World; }
+		IGraphics& Graphics() const { return *m_Graphics;}
 
 	private:
+		Engine()
+		{
+
+		}
+
 		void ProcessInput();
 		void Update(float dt);
 		void Render();

@@ -14,12 +14,16 @@ public:
 	~WorldService() = default;
 	void Add(Entity* entity) override; 
 	Entity* Find(const std::string& name) override;
+	void Draw() override;
+	void Update(float dt) override;
 	void Remove(Entity* entity) override;
 	Entity* Create(std::string name) override;
+	Entity* Create(std::string name, RectF position) override;
 	void Load(const std::string& scene) override;
 	void Unload() override;
 	void Register(const std::string& name, IScene* scene) override;
-
+	virtual void UnRegister(const std::string& name) override;
+	void ClearWorld() override;
 	
 private:
 	std::vector<Entity*> m_EntityInWorld;

@@ -44,6 +44,7 @@ public:
 	virtual void DrawTexture(size_t id, const Color& color) override;
 	virtual void GetTextureSize(size_t id, int* w, int* h) override;
 	virtual size_t LoadFont(const std::string& filename, int fontSize) override;
+	virtual void LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count);
 	virtual void DrawString(const std::string& text, size_t fontId, float x,
 		float y, const Color& color) override;
 	virtual void GetTextSize(const std::string& text, size_t fontId, int* w, int* h) override;

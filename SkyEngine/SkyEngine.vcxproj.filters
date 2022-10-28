@@ -57,7 +57,7 @@
     <ClInclude Include="includes\Component.h">
       <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="includes\Ekeys.h">
+    <ClInclude Include="includes\EKey.h">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>

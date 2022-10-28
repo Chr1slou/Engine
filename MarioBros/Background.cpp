@@ -1,10 +1,12 @@
 #include "Background.h"
 
+
+
 Background::Background()
 {
 }
 
-Background::Background(Entity* parent)
+Background::Background(Entity* parent) : Component(parent)
 {
 	m_background_texture_id = Engine::Get().Graphics().LoadTexture("assets/background.png");
 }

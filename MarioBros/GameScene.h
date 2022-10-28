@@ -12,8 +12,8 @@ public:
     virtual void Load() override;
     void LoadTileset(const std::string& image, int tileW, int tileH, int col, int count);
     virtual void SetName(const std::string& sceneName) override;
-private:
-    std::string m_Name;
+
+    
 
 };
 

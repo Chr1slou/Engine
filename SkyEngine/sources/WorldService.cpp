@@ -37,14 +37,16 @@ void WorldService::Update(float dt)
 
 void WorldService::Remove(Entity* entity)
 {
-	for (auto it = m_EntityMap.begin(); it != m_EntityMap.end(); ++it) {
-		if ((*it).second->GetName() == entity->GetName()) {
-			m_EntityMap.erase(it--);
-		}
-	}
 	for (auto it = m_EntityInWorld.begin(); it != m_EntityInWorld.end(); ++it) {
 		if ((*it)->GetName() == entity->GetName()) {
 			m_EntityInWorld.erase(it--);
+		}
+	}
+	for (auto it = m_EntityMap.begin(); it != m_EntityMap.end(); ++it) {
+		if ((*it).second->GetName() == entity->GetName()) {
+			Entity* temp = it->second;
+			m_EntityMap.erase(it--);
+			delete temp;
 		}
 	}
 }
@@ -94,7 +96,7 @@ void WorldService::UnRegister(const std::string& name)
 {
 	if (m_Scenes.count(name) != 0) {
 		IScene* temp = m_Scenes[name];
-		m_Scenes.erase(name);////////
+		m_Scenes.erase(name);
 		delete temp;
 	}
 	
@@ -104,6 +106,7 @@ void WorldService::ClearWorld()
 {
 	for (auto scene : m_Scenes)
 	{
+		Unload();
 		delete scene.second;
 	}
 	m_Scenes.clear();

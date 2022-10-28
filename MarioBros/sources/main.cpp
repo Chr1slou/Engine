@@ -9,8 +9,8 @@
 
 void InitGameplay()
 {
-	sky::Engine::Get().World().Register("Menu", new GameScene());
-	sky::Engine::Get().World().Load("Menu");
+	sky::Engine::Get().World().Register("Game", new GameScene());
+	sky::Engine::Get().World().Load("Game");
 	
 }
 

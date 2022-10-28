@@ -3,6 +3,7 @@
 #include<time.h>
 #include <windows.h>
 #include <SdlInput.h>
+
 #if _DEBUG
 #include <ConsoleLogger.h>
 #else
@@ -120,26 +121,14 @@ void sky::Engine::ProcessInput()
 void sky::Engine::Update(float dt)
 {
 	m_World->Update(dt);
-		if (m_Input->IsKeyDown(SDL_SCANCODE_W))
+		
+		if (m_Input->IsKeyDown(EKey::EKEY_1))
 		{
-			_tempY -= 200 * dt ;
 			
-		}
-		if (m_Input->IsKeyDown(SDL_SCANCODE_S))
-		{
-			_tempY += 200 * dt;
-		}
-		if (m_Input->IsKeyDown(SDL_SCANCODE_A))
-		{
-			_tempX-= 200 * dt;
-		}
-		if (m_Input->IsKeyDown(SDL_SCANCODE_D))
-		{
-			_tempX += 200 * dt;
 		}
 
 #if _DEBUG
-		if (m_Input->IsKeyDown(SDL_SCANCODE_ESCAPE))
+		if (m_Input->IsKeyDown(EKey::EKEY_ESCAPE))
 		{
 			isRunning = false;
 		}

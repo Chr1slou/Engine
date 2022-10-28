@@ -58,13 +58,18 @@ public:
 
 		return nullptr;
 	}
-
-
-	std::string& GetName() { return m_Name; }
+	Vector2 GetPosition() { return m_Position;}
+	void SetX(float X);
+	void SetY(float Y);
+	std::string& GetName() { return m_Name;}
 protected:
+	Vector2 m_Position = { 0.0f, 0.0f };
+	float m_Angle = 0.0f;
+	Vector2 m_Scale{ 1.0f,1.0f};
 	std::string m_Name;
 	std::vector<IUpdatable*> m_Updatable;
 	std::vector<IDrawable*> m_Drawable;
 	std::map<const type_info*, Component*> m_componentByType;
+	
 };
 

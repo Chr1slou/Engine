@@ -7,5 +7,6 @@ public:
     MenuScene();
     ~MenuScene();
     virtual void Load() override;
+    virtual void SetName(const std::string& sceneName) override;
 };
 

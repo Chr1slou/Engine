@@ -1,5 +1,6 @@
 #pragma once
 #include <Engine.h>
+#include <EKey.h>
 
 /// <summary>
 /// input manager
@@ -9,7 +10,7 @@ public:
 	SdlInput();
 	virtual ~SdlInput() = default;
 	virtual void Update() override;
-	virtual bool IsKeyDown(int keycode) override;
+	virtual bool IsKeyDown(sky::EKey keycode) override;
 	virtual bool IsButtonDown(int button) override;
 	virtual void GetMousePosition(int* x, int* y) override;
 private:

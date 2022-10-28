@@ -10,5 +10,5 @@ public:
 	virtual void Start();
 	virtual void Destroy();
 protected:
-	Entity* m_Entity = nullptr;
+	Entity* m_Parent = nullptr;
 };

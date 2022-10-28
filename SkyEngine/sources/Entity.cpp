@@ -37,6 +37,16 @@ Entity* Entity::Instantiate(const std::string& name)
 	return Engine::Get().World().Create(name);
 }
 
+void Entity::SetX(float X)
+{
+	m_Position.X += X;
+}
+
+void Entity::SetY(float Y)
+{
+	m_Position.Y += Y;
+}
+
 
 
 

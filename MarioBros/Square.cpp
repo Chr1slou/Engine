@@ -21,5 +21,5 @@ void Square::Destroy()
 
 void Square::Draw()
 {
-	Engine::Get().Graphics().FillRect(200, 200, 200, 200, Color::AQUAMARINE);
+	Engine::Get().Graphics().FillRect(m_Parent->GetPosition().X, m_Parent->GetPosition().Y, 200, 200, Color::AQUAMARINE);
 }

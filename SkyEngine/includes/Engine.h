@@ -4,6 +4,7 @@
 #include "RectF.h"
 #include "Color.h"
 #include "Flip.h"
+#include"EKey.h"
 using SkyEngine::Color;
 
 
@@ -12,15 +13,23 @@ class Entity;
 
 namespace sky {
 
+	typedef struct
+	{
+		float X;
+		float Y;
+	}Vector2;
+
+
 	/// <summary>
 	/// input interface
 	/// </summary>
+	/// 
 	class IInput
 	{
 	public:
 
 		virtual ~IInput() = default;
-		virtual bool IsKeyDown(int key) = 0;
+		virtual bool IsKeyDown(EKey key) = 0;
 		virtual bool IsButtonDown(int button) = 0;
 		virtual void GetMousePosition(int* x, int* y) = 0;
 
@@ -127,7 +136,7 @@ namespace sky {
 		virtual void SetName(const std::string& sceneName) = 0;
 		std::string& GetName() { return m_Name; }
 
-	private:
+	protected:
 		std::string m_Name;
 		//TODO rajouter un name et un getname
 	};

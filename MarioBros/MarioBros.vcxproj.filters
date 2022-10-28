@@ -30,6 +30,12 @@
     <ClCompile Include="Background.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadScene.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuScene.h">
@@ -45,6 +51,12 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadScene.h">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>

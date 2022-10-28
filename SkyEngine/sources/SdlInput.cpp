@@ -54,11 +54,11 @@ void SdlInput::Update()
 /// </summary>
 /// <param name="keycode"> id of the key </param>
 /// <returns> true if down </returns>
-bool SdlInput::IsKeyDown(int keycode)
+bool SdlInput::IsKeyDown(sky::EKey keycode)
 {
 	if (m_KeyStates != nullptr)
 	{
-		return m_KeyStates[keycode] == 1;
+		return m_KeyStates[static_cast<int>(keycode)] == 1;
 	}
 	return false;
 }

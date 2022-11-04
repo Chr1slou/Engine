@@ -60,6 +60,15 @@
     <ClInclude Include="includes\EKey.h">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="includes\Sprite.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Atlas.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Animation.h">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Engine.cpp">
@@ -90,6 +99,15 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="sources\Component.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Sprite.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Atlas.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Animation.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

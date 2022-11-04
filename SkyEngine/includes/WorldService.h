@@ -11,7 +11,7 @@ using namespace sky;
 class WorldService : public IWorld{
 public:
 	WorldService();
-	~WorldService() = default;
+	~WorldService();
 	void Add(Entity* entity) override; 
 	Entity* Find(const std::string& name) override;
 	void Draw() override;

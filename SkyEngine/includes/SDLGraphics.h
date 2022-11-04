@@ -4,6 +4,8 @@
 #include <iostream>
 #include <map>
 #include <Engine.h>
+#include <vector>
+
 using namespace SkyEngine;
 using namespace std;
 
@@ -12,6 +14,11 @@ struct SDL_Window;
 struct SDL_Renderer;
 struct SDL_Window;
 typedef struct _TTF_Font TTF_Font;
+
+// raccourci pour un vector de RectI :
+typedef vector<RectI> TTileset;
+typedef vector<vector<int>> TTilemap;
+
 
 /// <summary>
 /// service provider for the window, textures and font rendering
@@ -44,15 +51,21 @@ public:
 	virtual void DrawTexture(size_t id, const Color& color) override;
 	virtual void GetTextureSize(size_t id, int* w, int* h) override;
 	virtual size_t LoadFont(const std::string& filename, int fontSize) override;
-	virtual void LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count);
+	virtual void LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count) override;
 	virtual void DrawString(const std::string& text, size_t fontId, float x,
 		float y, const Color& color) override;
 	virtual void GetTextSize(const std::string& text, size_t fontId, int* w, int* h) override;
-
+	virtual void RenderFrame() override;
+	virtual void DrawTiles(int tileW, int tileH) override;
+	void LoadTileMap(const std::string& text);
 private:
 	SDL_Renderer* m_Renderer = nullptr;
 	SDL_Window* m_Window = nullptr;
 
 	map<size_t, SDL_Texture*> m_TextureMapCache;
 	map<size_t, TTF_Font*> m_FontMapCache;
+	TTileset m_Tileset;
+	TTilemap m_Tilemap;
+	SDL_Texture* m_TilesetTexture = nullptr;
+
 };

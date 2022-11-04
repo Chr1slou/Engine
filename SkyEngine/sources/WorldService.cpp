@@ -5,6 +5,11 @@ WorldService::WorldService()
 {
 }
 
+WorldService::~WorldService()
+{
+	ClearWorld();
+}
+
 void WorldService::Add(Entity* entity)
 {
 	m_EntityInWorld.emplace_back(entity);
@@ -39,6 +44,7 @@ void WorldService::Remove(Entity* entity)
 {
 	for (auto it = m_EntityInWorld.begin(); it != m_EntityInWorld.end(); ++it) {
 		if ((*it)->GetName() == entity->GetName()) {
+			(*it)->Destroy();
 			m_EntityInWorld.erase(it--);
 		}
 	}

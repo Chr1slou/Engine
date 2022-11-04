@@ -1,5 +1,7 @@
 #include <Entity.h>
 
+
+
 void Entity::Start()
 {
 	for(auto cmp : m_componentByType)

@@ -15,8 +15,5 @@ void Component::Start()
 
 void Component::Destroy()
 {
-	if (m_Parent != nullptr)
-	{
-		delete m_Parent;
-	}
+	
 }

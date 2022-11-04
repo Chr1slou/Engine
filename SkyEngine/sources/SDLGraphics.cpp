@@ -330,7 +330,29 @@ size_t SDLGraphics::LoadFont(const std::string& filename, int fontSize)
 
 void SDLGraphics::LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count)
 {
+	m_TilesetTexture = IMG_LoadTexture(m_Renderer, image.c_str());
+	if (m_TilesetTexture)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			int _y = i / col;
+			int _x = i - _y * col;
+			/*RectI* _tile= new RectI(
+				_x * tileW,
+				_y * tileH,
+				tileW,
+				tileH );*/
+			RectI _tile(
+				_x * tileW,
+				_y * tileH,
+				tileW,
+				tileH);
+
+			m_Tileset.push_back(_tile);
+		}
+	}
 }
+
 
 
 /// <summary>
@@ -380,3 +402,66 @@ void SDLGraphics::GetTextSize(const std::string& text, size_t fontId, int* w, in
 		*h = 0;
 	}
 }
+//useless
+void SDLGraphics::RenderFrame()
+{
+	int testIdx = 0;
+	SDL_Rect _src{
+	m_Tileset[testIdx].x,
+	m_Tileset[testIdx].y,
+	m_Tileset[testIdx].w,
+	m_Tileset[testIdx].h
+	};
+	SDL_Rect _dst{
+	0, 0, 32, 32
+	};
+	SDL_RenderCopyEx(m_Renderer, m_TilesetTexture,
+		&_src, &_dst, 0.0, nullptr, SDL_FLIP_NONE);
+}
+
+void SDLGraphics::DrawTiles(int tileW, int tileH)
+{
+	for (int y = 0; y < m_Tilemap.size(); y++) {
+		for (int x = 0; x < m_Tilemap[y].size(); x++) {
+			int _index = m_Tilemap[y][x] - 1;
+			if (_index >= 0) {
+				SDL_Rect _src{
+				m_Tileset[_index].x, m_Tileset[_index].y,
+				m_Tileset[_index].w, m_Tileset[_index].h
+				};
+				SDL_Rect _dst{
+				x * tileW, y * tileH,
+				tileW, tileH
+				};
+				SDL_RenderCopyEx(m_Renderer, m_TilesetTexture,
+					&_src, &_dst, 0.0, nullptr, SDL_FLIP_NONE);
+			}
+		}
+	}
+}
+
+void SDLGraphics::LoadTileMap(const std::string& text)
+{
+	FILE* file = fopen(text.c_str(), "rb+");
+	vector<char> mapIndex;
+	m_Tilemap.push_back(vector<int>());
+	while (char c = fgetc(file) != EOF)
+	{
+		if (c == ',')
+		{
+			string s(mapIndex.begin(), mapIndex.end());
+			m_Tilemap[m_Tilemap.size()-1].push_back(atoi(s.c_str()));
+		}
+		else if (c == '\n')
+		{
+			m_Tilemap.push_back(vector<int>());
+		}
+		else
+		{
+			mapIndex.push_back(c);
+		}
+	}
+	fclose(file);
+}
+
+

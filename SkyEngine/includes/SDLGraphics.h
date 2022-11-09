@@ -17,7 +17,8 @@ typedef struct _TTF_Font TTF_Font;
 
 // raccourci pour un vector de RectI :
 typedef vector<RectI> TTileset;
-typedef vector<vector<int>> TTilemap;
+typedef vector<vector<int>> TTilemapLayer;
+typedef map<string, TTilemapLayer> TileMap;
 
 
 /// <summary>
@@ -51,13 +52,16 @@ public:
 	virtual void DrawTexture(size_t id, const Color& color) override;
 	virtual void GetTextureSize(size_t id, int* w, int* h) override;
 	virtual size_t LoadFont(const std::string& filename, int fontSize) override;
-	virtual void LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count) override;
 	virtual void DrawString(const std::string& text, size_t fontId, float x,
 		float y, const Color& color) override;
 	virtual void GetTextSize(const std::string& text, size_t fontId, int* w, int* h) override;
 	virtual void RenderFrame() override;
-	virtual void DrawTiles(int tileW, int tileH) override;
+
+	virtual void LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count) override;
 	void LoadTileMap(const std::string& text);
+	virtual void DrawTiles(int tileW, int tileH) override;
+	void AddLayer(const string& layerName, TTilemapLayer layer);
+
 private:
 	SDL_Renderer* m_Renderer = nullptr;
 	SDL_Window* m_Window = nullptr;
@@ -65,7 +69,8 @@ private:
 	map<size_t, SDL_Texture*> m_TextureMapCache;
 	map<size_t, TTF_Font*> m_FontMapCache;
 	TTileset m_Tileset;
-	TTilemap m_Tilemap;
+	TTilemapLayer m_TilemapLayer;
+	TileMap m_TileMap;
 	SDL_Texture* m_TilesetTexture = nullptr;
 
 };

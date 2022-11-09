@@ -61,15 +61,7 @@ namespace sky {
 		virtual void Update(float dt) = 0;
 	};
 
-	/// <summary>
-	/// interface for drawable components
-	/// </summary>
-	class IDrawable
-	{
-	public:
-		virtual ~IDrawable() = default;
-		virtual void Draw() = 0;
-	};
+	
 
 	/// <summary>
 	/// graphics interface
@@ -94,7 +86,7 @@ namespace sky {
 		virtual void DrawLine(float x1, float y1, float x2, float y2, const Color& color) = 0;
 		virtual size_t LoadTexture(const std::string& filename) = 0;
 		virtual void DrawTexture(size_t id, const RectI& src, const RectF& dst,
-			double angle, const Flip& flip, const Color& color) = 0;
+			double angle, const SkyEngine::Flip& flip, const Color& color) = 0;
 		virtual void DrawTexture(size_t id, const RectF& dst, const Color& color) = 0;
 		virtual void DrawTexture(size_t id, const Color& color) = 0;
 		virtual void GetTextureSize(size_t id, int* w, int* h) = 0;
@@ -208,7 +200,17 @@ namespace sky {
 		IWorld* m_World = nullptr;
 	};
 
-	
+	/// <summary>
+	/// interface for drawable components
+	/// </summary>
+	class IDrawable
+	{
+	public:
+		virtual ~IDrawable() = default;
+		virtual void Draw() = 0;
+	protected:
+		IGraphics& m_GraphicService = Engine::Get().Graphics();
+	};
 
 	
 

@@ -27,9 +27,6 @@
     <ClInclude Include="includes\ConsoleLogger.h">
       <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="sources\SDLGraphics.h">
-      <Filter>includes</Filter>
-    </ClInclude>
     <ClInclude Include="includes\RectI.h">
       <Filter>includes</Filter>
     </ClInclude>
@@ -67,6 +64,9 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="includes\Animation.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SDLGraphics.h">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>

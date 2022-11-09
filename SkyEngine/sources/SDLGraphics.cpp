@@ -328,30 +328,7 @@ size_t SDLGraphics::LoadFont(const std::string& filename, int fontSize)
 	return 0;
 }
 
-void SDLGraphics::LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count)
-{
-	m_TilesetTexture = IMG_LoadTexture(m_Renderer, image.c_str());
-	if (m_TilesetTexture)
-	{
-		for (int i = 0; i < count; i++)
-		{
-			int _y = i / col;
-			int _x = i - _y * col;
-			/*RectI* _tile= new RectI(
-				_x * tileW,
-				_y * tileH,
-				tileW,
-				tileH );*/
-			RectI _tile(
-				_x * tileW,
-				_y * tileH,
-				tileW,
-				tileH);
 
-			m_Tileset.push_back(_tile);
-		}
-	}
-}
 
 
 
@@ -419,11 +396,34 @@ void SDLGraphics::RenderFrame()
 		&_src, &_dst, 0.0, nullptr, SDL_FLIP_NONE);
 }
 
+//TileMap section
+
+
+void SDLGraphics::LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count)
+{
+	m_TilesetTexture = IMG_LoadTexture(m_Renderer, image.c_str());
+	if (m_TilesetTexture)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			int _y = i / col;
+			int _x = i - _y * col;
+			RectI _tile(
+				_x * tileW,
+				_y * tileH,
+				tileW,
+				tileH);
+
+			m_Tileset.push_back(_tile);
+		}
+	}
+}
+
 void SDLGraphics::DrawTiles(int tileW, int tileH)
 {
-	for (int y = 0; y < m_Tilemap.size(); y++) {
-		for (int x = 0; x < m_Tilemap[y].size(); x++) {
-			int _index = m_Tilemap[y][x] - 1;
+	for (int y = 0; y < m_TilemapLayer.size(); y++) {
+		for (int x = 0; x < m_TilemapLayer[y].size(); x++) {
+			int _index = m_TilemapLayer[y][x] - 1;
 			if (_index >= 0) {
 				SDL_Rect _src{
 				m_Tileset[_index].x, m_Tileset[_index].y,
@@ -440,21 +440,31 @@ void SDLGraphics::DrawTiles(int tileW, int tileH)
 	}
 }
 
+void SDLGraphics::AddLayer(const string& layerName, TTilemapLayer layer)
+{
+	if (m_TileMap.count(layerName) == 0)
+	{
+		m_TileMap.emplace(layerName, layer);
+	}
+}
+
 void SDLGraphics::LoadTileMap(const std::string& text)
 {
-	FILE* file = fopen(text.c_str(), "rb+");
+	
+	FILE* file;
+	errno_t err = fopen_s(&file, text.c_str(), "rb+");;
 	vector<char> mapIndex;
-	m_Tilemap.push_back(vector<int>());
+	m_TilemapLayer.push_back(vector<int>());
 	while (char c = fgetc(file) != EOF)
 	{
 		if (c == ',')
 		{
 			string s(mapIndex.begin(), mapIndex.end());
-			m_Tilemap[m_Tilemap.size()-1].push_back(atoi(s.c_str()));
+			m_TilemapLayer[m_TilemapLayer.size()-1].push_back(atoi(s.c_str()));
 		}
 		else if (c == '\n')
 		{
-			m_Tilemap.push_back(vector<int>());
+			m_TilemapLayer.push_back(vector<int>());
 		}
 		else
 		{

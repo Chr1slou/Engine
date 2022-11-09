@@ -23,20 +23,20 @@ void PlayerController::Update(float dt)
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_A))
 	{
-		m_Parent->SetX(-200 * dt);
+		m_Parent->SetX(-200.0f * dt);
 
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_D))
 	{
-		m_Parent->SetX(200 * dt);
+		m_Parent->SetX(200.0f * dt);
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_W))
 	{
-		m_Parent->SetY(-200 * dt);
+		m_Parent->SetY(-200.0f * dt);
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_S))
 	{
-		m_Parent->SetY(200 * dt);
+		m_Parent->SetY(200.0f * dt);
 	}
 
 }

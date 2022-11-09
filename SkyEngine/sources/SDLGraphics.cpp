@@ -1,10 +1,14 @@
+#pragma once
+#pragma warning(disable : 4996)
 #include "SDLGraphics.h"
 #include <SDL_image.h>
 #include <RectF.h>
 #include <Vector>
 #include <SDL_ttf.h>
+#include <Engine.h>
 
 using std::vector;
+using namespace sky;
 
 struct SDL_Texture* g_TextureBuffer;
 
@@ -452,26 +456,33 @@ void SDLGraphics::LoadTileMap(const std::string& text)
 {
 	
 	FILE* file;
-	errno_t err = fopen_s(&file, text.c_str(), "rb+");;
-	vector<char> mapIndex;
-	m_TilemapLayer.push_back(vector<int>());
-	while (char c = fgetc(file) != EOF)
+	//errno_t err = fopen_s(&file, text.c_str(), "rb+"));
+	if ((file = fopen(text.c_str(), "rb+")) == NULL)
 	{
-		if (c == ',')
-		{
-			string s(mapIndex.begin(), mapIndex.end());
-			m_TilemapLayer[m_TilemapLayer.size()-1].push_back(atoi(s.c_str()));
-		}
-		else if (c == '\n')
-		{
-			m_TilemapLayer.push_back(vector<int>());
-		}
-		else
-		{
-			mapIndex.push_back(c);
-		}
+		Engine::Get().Logger().Write("Cannot open file\n");
 	}
-	fclose(file);
+	else
+	{
+		vector<char> mapIndex;
+		m_TilemapLayer.push_back(vector<int>());
+		while (char c = fgetc(file) != EOF)
+		{
+			if (c == ',')
+			{
+				string s(mapIndex.begin(), mapIndex.end());
+				m_TilemapLayer[m_TilemapLayer.size() - 1].push_back(atoi(s.c_str()));
+			}
+			else if (c == '\n')
+			{
+				m_TilemapLayer.push_back(vector<int>());
+			}
+			else
+			{
+				mapIndex.push_back(c);
+			}
+		}
+		fclose(file);
+	}
 }
 
 

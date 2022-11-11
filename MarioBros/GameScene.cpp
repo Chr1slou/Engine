@@ -16,7 +16,7 @@ GameScene::~GameScene()
 void GameScene::Load()
 {
 	Entity* entityTemp = sky::Engine::Get().World().Create("Entity1");
-	//entityTemp->AddComponent<Background>();
+	entityTemp->AddComponent<Background>();
 	entityTemp->AddComponent<LoadScene>();
 
 	Entity* entitytemp2 = entityTemp->Instantiate("Entity2");

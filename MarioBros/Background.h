@@ -16,6 +16,6 @@ public:
     virtual void Destroy() override;
     virtual void Draw() override;
 private:
-    size_t m_background_texture_id;
+    
 };
 

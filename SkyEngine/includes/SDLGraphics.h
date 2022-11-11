@@ -58,9 +58,9 @@ public:
 	virtual void RenderFrame() override;
 
 	virtual void LoadTileSet(const std::string& image, int tileW, int tileH, int col, int count) override;
-	void LoadTileMap(const std::string& text);
+	virtual void LoadTileMap(const std::string& text, const std::string& layerName) override;
 	virtual void DrawTiles(int tileW, int tileH) override;
-	void AddLayer(const string& layerName, TTilemapLayer layer);
+	virtual void AddLayer(const std::string& layerName, TTilemapLayer layer) override;
 
 private:
 	SDL_Renderer* m_Renderer = nullptr;

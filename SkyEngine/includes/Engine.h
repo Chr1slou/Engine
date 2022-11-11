@@ -5,11 +5,12 @@
 #include "Color.h"
 #include "Flip.h"
 #include"EKey.h"
+#include <vector>
 using SkyEngine::Color;
 
 
 class Entity;
-
+typedef std::vector<std::vector<int>> TTilemapLayer;
 
 namespace sky {
 
@@ -97,6 +98,8 @@ namespace sky {
 		virtual void GetTextSize(const std::string& text, size_t fontId, int* w, int* h) = 0;
 		virtual void RenderFrame() = 0;
 		virtual void DrawTiles(int tileW, int tileH) = 0;
+		virtual void LoadTileMap(const std::string& text, const std::string& layerName) = 0;
+		virtual void AddLayer(const std::string& layerName, TTilemapLayer layer) = 0;
 	};
 
 	/// <summary>

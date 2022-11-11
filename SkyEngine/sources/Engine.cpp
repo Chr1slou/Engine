@@ -46,7 +46,7 @@ bool sky::Engine::Init(const std::string& title, int w, int h)
 	m_Logger = new FileLogger();
 #endif
 
-	m_Logger->Write("Wooowww");
+	
 	
 
 	m_Input = new SdlInput();

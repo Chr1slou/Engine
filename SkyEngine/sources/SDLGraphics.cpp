@@ -6,9 +6,11 @@
 #include <Vector>
 #include <SDL_ttf.h>
 #include <Engine.h>
+#include <iostream>
 
 using std::vector;
 using namespace sky;
+using namespace std;
 
 struct SDL_Texture* g_TextureBuffer;
 
@@ -425,23 +427,27 @@ void SDLGraphics::LoadTileSet(const std::string& image, int tileW, int tileH, in
 
 void SDLGraphics::DrawTiles(int tileW, int tileH)
 {
-	for (int y = 0; y < m_TilemapLayer.size(); y++) {
-		for (int x = 0; x < m_TilemapLayer[y].size(); x++) {
-			int _index = m_TilemapLayer[y][x] - 1;
-			if (_index >= 0) {
-				SDL_Rect _src{
-				m_Tileset[_index].x, m_Tileset[_index].y,
-				m_Tileset[_index].w, m_Tileset[_index].h
-				};
-				SDL_Rect _dst{
-				x * tileW, y * tileH,
-				tileW, tileH
-				};
-				SDL_RenderCopyEx(m_Renderer, m_TilesetTexture,
-					&_src, &_dst, 0.0, nullptr, SDL_FLIP_NONE);
+	for(auto var : m_TileMap)
+	{
+		for (int y = 0; y < var.second.size(); y++) {
+			for (int x = 0; x < var.second[y].size(); x++) {
+				int _index = var.second[y][x];
+				if (_index >= 0) {
+					SDL_Rect _src{
+					m_Tileset[_index].x, m_Tileset[_index].y,
+					m_Tileset[_index].w, m_Tileset[_index].h
+					};
+					SDL_Rect _dst{
+					x * tileW, y * tileH,
+					tileW, tileH
+					};
+					SDL_RenderCopyEx(m_Renderer, m_TilesetTexture,
+						&_src, &_dst, 0.0, nullptr, SDL_FLIP_NONE);
+				}
 			}
 		}
 	}
+
 }
 
 void SDLGraphics::AddLayer(const string& layerName, TTilemapLayer layer)
@@ -452,37 +458,60 @@ void SDLGraphics::AddLayer(const string& layerName, TTilemapLayer layer)
 	}
 }
 
-void SDLGraphics::LoadTileMap(const std::string& text)
+void SDLGraphics::LoadTileMap(const std::string& text, const std::string& layerName)
 {
 	
 	FILE* file;
+	file = fopen(text.c_str(), "r");
 	//errno_t err = fopen_s(&file, text.c_str(), "rb+"));
-	if ((file = fopen(text.c_str(), "rb+")) == NULL)
+	if (file == NULL)
 	{
 		Engine::Get().Logger().Write("Cannot open file\n");
 	}
 	else
 	{
 		vector<char> mapIndex;
-		m_TilemapLayer.push_back(vector<int>());
-		while (char c = fgetc(file) != EOF)
+		TTilemapLayer layer = TTilemapLayer();
+		layer.push_back(vector<int>());
+		char c = fgetc(file);
+		while (c != EOF)
 		{
 			if (c == ',')
 			{
 				string s(mapIndex.begin(), mapIndex.end());
-				m_TilemapLayer[m_TilemapLayer.size() - 1].push_back(atoi(s.c_str()));
+				
+				layer[layer.size() - 1].push_back(atoi(s.c_str()));
+				mapIndex.clear();
 			}
 			else if (c == '\n')
 			{
-				m_TilemapLayer.push_back(vector<int>());
+				string s(mapIndex.begin(), mapIndex.end());
+
+				layer[layer.size() - 1].push_back(atoi(s.c_str()));
+				layer.push_back(vector<int>());
+				mapIndex.clear();
 			}
 			else
 			{
 				mapIndex.push_back(c);
+				
 			}
+			c = fgetc(file);
 		}
 		fclose(file);
+		m_TileMap.emplace(layerName, layer);
 	}
+	/*for (int i = 0; i < layer.size(); i++)
+	{
+		for (int j = 0; j < layer[i].size(); j++)
+		{
+			printf("%i", layer[i][j]);
+				
+		}
+
+		printf("\n");
+	}*/
+	
 }
 
 

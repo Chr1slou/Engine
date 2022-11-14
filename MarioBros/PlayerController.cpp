@@ -15,6 +15,11 @@ PlayerController::PlayerController(Entity* parent) : Component(parent)
 	
 }
 
+void PlayerController::SetAnimator(Animation* animator)
+{
+	m_Animator = animator;
+}
+
 void PlayerController::Update(float dt)
 {
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_1))
@@ -43,7 +48,7 @@ void PlayerController::Update(float dt)
 
 void PlayerController::Start()
 {
-	m_player = m_Parent->GetComponent<Square>();
+	m_Player = m_Parent->GetComponent<Square>();
 }
 
 void PlayerController::Destroy()
@@ -52,8 +57,8 @@ void PlayerController::Destroy()
 	{
 		delete m_Parent;
 	}
-	if (m_player != nullptr)
+	if (m_Player != nullptr)
 	{
-		delete m_player;
+		delete m_Player;
 	}
 }

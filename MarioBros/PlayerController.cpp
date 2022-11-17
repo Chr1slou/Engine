@@ -53,6 +53,10 @@ void PlayerController::Start()
 
 void PlayerController::Destroy()
 {
+	if (m_Animator != nullptr)
+	{
+		delete m_Animator;
+	}
 	if (m_Parent != nullptr)
 	{
 		delete m_Parent;

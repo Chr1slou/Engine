@@ -36,6 +36,12 @@
     <ClCompile Include="LoadScene.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="MenuController.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuBackGround.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuScene.h">
@@ -57,6 +63,12 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="LoadScene.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuController.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuBackGround.h">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "MenuScene.h"
 #include "Entity.h"
-#include "Square.h"
+#include "MenuBackGround.h"
+#include "LoadScene.h"
 
 MenuScene::MenuScene()
 {
@@ -8,12 +9,14 @@ MenuScene::MenuScene()
 
 MenuScene::~MenuScene()
 {
+
 }
 
 void MenuScene::Load()
 {
-	Entity* entityTemp = sky::Engine::Get().World().Create("Square");
-	entityTemp->AddComponent<Square>();
+	Entity* entityTemp = sky::Engine::Get().World().Create("MenuBackGround");
+	//entityTemp->AddComponent<MenuBackGround>();
+	entityTemp->AddComponent<LoadScene>();
 }
 
 void MenuScene::SetName(const std::string& sceneName)

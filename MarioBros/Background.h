@@ -4,6 +4,10 @@
 
 using namespace sky;
 
+
+/// <summary>
+/// background of the game loaded from tiled
+/// </summary>
 class Background :
     public Component, public IDrawable
 {

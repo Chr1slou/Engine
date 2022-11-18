@@ -1,6 +1,8 @@
 #pragma once
 
-
+/// <summary>
+/// list of key indexes
+/// </summary>
 namespace sky
 {
     enum class EKey

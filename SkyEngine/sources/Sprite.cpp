@@ -24,6 +24,11 @@ void Sprite::Flip(SkyEngine::Flip flip)
 {
 	m_Flip = flip;
 }
+void Sprite::SetFlip(bool h, bool v)
+{
+	SkyEngine::Flip flip = { h, v };
+	m_Flip = flip;
+}
 
 void Sprite::SetColor(SkyEngine::Color color)
 {

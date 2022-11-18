@@ -4,6 +4,9 @@
 
 using namespace sky;
 
+/// <summary>
+/// the background of the menu
+/// </summary>
 class MenuBackGround :
     public Component, public IDrawable
 {

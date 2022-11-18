@@ -42,6 +42,9 @@
     <ClCompile Include="MenuBackGround.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAnimation.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuScene.h">
@@ -51,9 +54,6 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="Square.h">
-      <Filter>includes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Demo.h">
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
@@ -69,6 +69,9 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="MenuBackGround.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimation.h">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>

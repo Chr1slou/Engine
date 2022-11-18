@@ -501,17 +501,7 @@ void SDLGraphics::LoadTileMap(const std::string& text, const std::string& layerN
 		fclose(file);
 		m_TileMap.emplace(layerName, layer);
 	}
-	/*for (int i = 0; i < layer.size(); i++)
-	{
-		for (int j = 0; j < layer[i].size(); j++)
-		{
-			printf("%i", layer[i][j]);
-				
-		}
 
-		printf("\n");
-	}*/
-	
 }
 
 

@@ -8,18 +8,42 @@
 
 using namespace sky;
 
-
+/// <summary>
+/// object that constains component in the game
+/// </summary>
 class  Entity final {
 public:
 	Entity(const std::string& name) : m_Name(name) {}
 	virtual ~Entity() = default;
+	/// <summary>
+	/// init the components
+	/// </summary>
 	virtual void Start();
+
+	/// <summary>
+	/// calls update on the updatable components
+	/// </summary>
+	/// <param name="dt"> deltatime in seconds</param>
 	virtual void Update(float dt);
+
+	/// <summary>
+	/// calls draw on the drawable components
+	/// </summary>
+
 	virtual void Draw();
 	virtual void Destroy();
+	/// <summary>
+	/// creates a new entity
+	/// </summary>
+	/// <param name="name">name of the entity</param>
+	/// <returns>an entity</returns>
 	virtual Entity* Instantiate(const std::string& name);
 	
-
+	/// <summary>
+	/// adds a component on the entity
+	/// </summary>
+	/// <typeparam name="T">type of the component</typeparam>
+	/// <returns>the component created</returns>
 	template<typename T>
 	T* AddComponent()
 	{
@@ -47,6 +71,12 @@ public:
 		}
 		return nullptr;
 	}
+
+	/// <summary>
+	/// returns a component from the specified type
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <returns></returns>
 	template <typename T>
 	T* GetComponent()
 	{
@@ -58,9 +88,29 @@ public:
 
 		return nullptr;
 	}
+
+	/// <summary>
+	/// return the position of the entity
+	/// </summary>
+	/// <returns></returns>
 	Vector2 GetPosition() { return m_Position;}
+
+	/// <summary>
+	/// set the position of the entity on the x axis
+	/// </summary>
+	/// <param name="X"></param>
 	void SetX(float X);
+
+	/// <summary>
+/// set the position of the entity on the y axis
+/// </summary>
+/// <param name="Y"></param>
 	void SetY(float Y);
+
+	/// <summary>
+	/// returns the name of the entity
+	/// </summary>
+	/// <returns>string</returns>
 	std::string& GetName() { return m_Name;}
 protected:
 	Vector2 m_Position = { 0.0f, 0.0f };

@@ -22,6 +22,7 @@ void PlayerController::SetAnimator(Animation* animator)
 
 void PlayerController::Update(float dt)
 {
+	m_Animator->Play("right", true);
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_1))
 	{
 		Engine::Get().World().Remove(m_Parent);
@@ -29,10 +30,12 @@ void PlayerController::Update(float dt)
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_A))
 	{
 		m_Parent->SetX(-200.0f * dt);
-
+		
+		m_Animator->SetFlip(true, false);
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_D))
 	{
+		m_Animator->SetFlip(false, false);
 		m_Parent->SetX(200.0f * dt);
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_W))

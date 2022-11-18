@@ -14,7 +14,7 @@ void LoadScene::Update(float dt)
 {
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_2))
 	{
-		sky::Engine::Get().World().Register("Game", new GameScene());
+		
 		sky::Engine::Get().World().Unload();
 		sky::Engine::Get().World().Load("Game");
 		sky::Engine::Get().World().UnRegister("Menu");

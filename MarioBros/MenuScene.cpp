@@ -15,8 +15,8 @@ MenuScene::~MenuScene()
 void MenuScene::Load()
 {
 	Entity* entityTemp = sky::Engine::Get().World().Create("MenuBackGround");
-	//entityTemp->AddComponent<MenuBackGround>();
 	entityTemp->AddComponent<LoadScene>();
+	entityTemp->AddComponent<MenuBackGround>();
 }
 
 void MenuScene::SetName(const std::string& sceneName)

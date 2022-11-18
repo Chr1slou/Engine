@@ -4,11 +4,13 @@
 
 #include <Engine.h>
 #include "MenuScene.h"
+#include "GameScene.h"
 
 
 
 void InitGameplay()
 {
+	sky::Engine::Get().World().Register("Game", new GameScene());
 	sky::Engine::Get().World().Register("Menu", new MenuScene());
 	sky::Engine::Get().World().Load("Menu");
 	

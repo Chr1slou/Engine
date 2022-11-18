@@ -1,5 +1,8 @@
 #include "MenuController.h"
 
+/// <summary>
+/// not used yet
+/// </summary>
 MenuController::MenuController()
 {
 }

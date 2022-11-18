@@ -4,6 +4,9 @@
 
 using namespace sky;
 
+/// <summary>
+/// a simple drawable square
+/// </summary>
 class Square :
     public Component,  public IDrawable
 {

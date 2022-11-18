@@ -49,11 +49,7 @@ void SdlInput::Update()
 }
 
 
-/// <summary>
-/// checks if the keyboard key is down
-/// </summary>
-/// <param name="keycode"> id of the key </param>
-/// <returns> true if down </returns>
+
 bool SdlInput::IsKeyDown(sky::EKey keycode)
 {
 	if (m_KeyStates != nullptr)
@@ -63,11 +59,7 @@ bool SdlInput::IsKeyDown(sky::EKey keycode)
 	return false;
 }
 
-/// <summary>
-/// checks if the mouse button is down
-/// </summary>
-/// <param name="button"> id of the button </param>
-/// <returns> true if down </returns>
+
 bool SdlInput::IsButtonDown(int button)
 {
 	if (m_MouseStates != nullptr)
@@ -77,11 +69,7 @@ bool SdlInput::IsButtonDown(int button)
 	return false;
 }
 
-/// <summary>
-/// put the mouse position in pointers
-/// </summary>
-/// <param name="x"> position on the x axis </param>
-/// <param name="y"> position on the y axis </param>
+
 void SdlInput::GetMousePosition(int* x, int* y)
 {
 	*x = m_MouseX;

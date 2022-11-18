@@ -54,7 +54,7 @@ void Animation::Update(float dt)
 		{
 			m_ElapsedTime = 0;
 			m_FrameIndex++;
-			if ((m_FrameIndex - m_CurrentClip.start) > m_CurrentClip.count)
+			/*if ((m_FrameIndex - m_CurrentClip.start) > m_CurrentClip.count)
 			{
 				if (m_IsLooping)
 				{
@@ -64,7 +64,7 @@ void Animation::Update(float dt)
 				{
 					m_IsPlaying = false;
 				}
-			}
+			}*/
 		}
 		m_RectSrc.x = (m_FrameIndex % m_FrameInRows) * m_FrameWidth;
 		m_RectSrc.y = (m_FrameIndex / m_FrameInRows) * m_FrameHeight;

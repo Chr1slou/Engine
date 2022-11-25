@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "Engine.h"
 
 Animation::~Animation()
 {
@@ -49,12 +50,16 @@ void Animation::Update(float dt)
 {
 	if (m_IsPlaying)
 	{
+		char test[256];
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime >= m_CurrentClip.delay)
 		{
+			snprintf(test, 256, "inner m_ElapsedTime : %f %i\n", m_ElapsedTime, m_FrameIndex - m_CurrentClip.start);
+			Engine::Get().Logger().Write(test);
 			m_ElapsedTime = 0;
 			m_FrameIndex++;
-			/*if ((m_FrameIndex - m_CurrentClip.start) > m_CurrentClip.count)
+
+			if ((m_FrameIndex - m_CurrentClip.start) > m_CurrentClip.count)
 			{
 				if (m_IsLooping)
 				{
@@ -64,10 +69,13 @@ void Animation::Update(float dt)
 				{
 					m_IsPlaying = false;
 				}
-			}*/
+			}
 		}
 		m_RectSrc.x = (m_FrameIndex % m_FrameInRows) * m_FrameWidth;
 		m_RectSrc.y = (m_FrameIndex / m_FrameInRows) * m_FrameHeight;
+		snprintf(test, 256, "m_ElapsedTime : %f %i\n", m_ElapsedTime, m_CurrentClip.count);
+		Engine::Get().Logger().Write(test);
+
 	}
 
 }

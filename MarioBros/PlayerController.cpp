@@ -18,11 +18,11 @@ PlayerController::PlayerController(Entity* parent) : Component(parent)
 void PlayerController::SetAnimator(Animation* animator)
 {
 	m_Animator = animator;
+	
 }
 
 void PlayerController::Update(float dt)
 {
-	m_Animator->Play("right", true);
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_1))
 	{
 		Engine::Get().World().Remove(m_Parent);

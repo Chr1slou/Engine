@@ -32,8 +32,8 @@ void GameScene::Load()
 	Animator->AddFrame("0", 0, 120, 250, 120);
 	Animator->AddFrame("0", 250, 120, 250, 120);*/
 	Animator->InitAnimation(2, 250, 120);
-	Animator->AddClip("right", 0, 4, 4);
-
+	Animator->AddClip("right", 0, 3, 0.06);
+	Animator->Play("right", true);
 	
 }
 

@@ -438,7 +438,7 @@ void SDLGraphics::DrawTiles(int tileW, int tileH)
 					m_Tileset[_index].w, m_Tileset[_index].h
 					};
 					SDL_Rect _dst{
-					x * tileW, y * tileH,
+					x * tileW , y * tileH ,
 					tileW, tileH
 					};
 					SDL_RenderCopyEx(m_Renderer, m_TilesetTexture,

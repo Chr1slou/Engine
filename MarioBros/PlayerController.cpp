@@ -29,14 +29,21 @@ void PlayerController::Update(float dt)
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_A))
 	{
-		m_Parent->SetX(-200.0f * dt);
 		
 		m_Animator->SetFlip(true, false);
+		m_Animator->Play("Right", true);
+		m_Parent->SetX(-200.0f * dt);
 	}
-	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_D))
+	else if (Engine::Get().Input().IsKeyDown(EKey::EKEY_D))
 	{
 		m_Animator->SetFlip(false, false);
+		m_Animator->Play("Right", true);
 		m_Parent->SetX(200.0f * dt);
+		
+	}
+	else
+	{
+		m_Animator->Play("Idle", true);
 	}
 	if (Engine::Get().Input().IsKeyDown(EKey::EKEY_W))
 	{
@@ -46,6 +53,8 @@ void PlayerController::Update(float dt)
 	{
 		m_Parent->SetY(200.0f * dt);
 	}
+	
+
 
 }
 

@@ -25,15 +25,16 @@ void GameScene::Load()
 	entitytemp2->AddComponent<Animation>();
 	Animation* Animator = entitytemp2->GetComponent< Animation>();
 	entitytemp2->GetComponent<PlayerController>()->SetAnimator(Animator);
-	Animator->SetTexture("assets/helicoanim.png");
-	Animator->SetDst(250, 120);
+	Animator->SetTexture("assets/Player.png");
+	Animator->SetDst(64, 64);
 	/*Animator->AddFrame("0", 0, 0, 250, 120);
 	Animator->AddFrame("0", 250, 0, 250, 120);
 	Animator->AddFrame("0", 0, 120, 250, 120);
 	Animator->AddFrame("0", 250, 120, 250, 120);*/
-	Animator->InitAnimation(2, 250, 120);
-	Animator->AddClip("right", 0, 3, 0.06);
-	Animator->Play("right", true);
+	Animator->InitAnimation(6, 32, 32);
+	Animator->AddClip("Idle", 0, 0, 1);
+	Animator->AddClip("Right", 1, 3, 0.3);
+	Animator->Play("Idle", true);
 	
 }
 

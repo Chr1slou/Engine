@@ -36,6 +36,7 @@ void Animation::Play(const std::string& name, bool loop)
 	if (m_AnimationsMap.count(name) > 0)
 	{
 		m_CurrentClip = m_AnimationsMap[name];
+		
 	}
 	m_IsLooping = loop;
 	m_IsPlaying = true;
